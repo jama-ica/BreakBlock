@@ -1,0 +1,14 @@
+strcut Test
+{
+	int a;
+}
+
+class Program
+{
+	static readonly Test t = new Test();
+}
+
+# スタックに確保
+フィールドには使えないっぽい
+Span<byte> buffer = stackalloc byte[BufferSize];
+Span<T> の T はアンマネージ型(ガベコレ対象外となる構造体など)
