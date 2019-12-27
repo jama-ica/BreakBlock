@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
 using RLTPS.Resource;
 using RLTPS.Model;
 using RLTPS.Control;
@@ -18,29 +19,30 @@ namespace RLTPS.Scene
 	{
 		
 		// Constructor
-		public GameScene(IGameData gameData, Controller controller, ResourceManager resourceMng, ViewManager viewMng)
-			: base(gameData, controller, resourceMng, viewMng)
+		public GameScene(IGameData gameData, Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)
+			: base(gameData, controller, resourceMng, viewMng, sbjChangeScene)
 		{
 		}
 
-		public override void Load()
+		protected override bool Load()
 		{
-			
+			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+			return false;
 		}
 
-		public override void Start()
+		protected override void Start()
 		{
 			this.controller.StartStage();
 		}
 		
-		public override void Update()
+		protected override void UpdateScene()
 		{
 			this.stage.Update();
 		}
 
-		public override void End()
+		protected override bool End()
 		{
-			
+			return false;
 		}
 		
 	}
