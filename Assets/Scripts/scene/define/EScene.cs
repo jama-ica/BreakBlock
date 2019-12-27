@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Util;
 
 namespace RLTPS.Scene
 {
@@ -14,7 +15,7 @@ namespace RLTPS.Scene
 
 	public static class ExEScene
 	{
-		static readonly var TextPairs = new UtilPairs<string>(
+		static readonly UtilPairs<string> TextPairs = new UtilPairs<string>(
 			new (int key, string val)[]{
 				((int)EScene.Init, "Init"),
 				((int)EScene.Title, "Title"),

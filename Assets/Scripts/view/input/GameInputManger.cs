@@ -12,16 +12,17 @@ namespace RLTPS.View
 	/// </summary>
 	public class GameInputManager
 	{
-		readonly KeySettingData keySettingData;
+		KeyConfigData keyConfigData;
+		readonly InputDeviceManager inputDeviceMng;
+		//--
 		GameInput currentGameInput;
-		InputDeviceManager inputDeviceMng;
 		
 		// Constructor
-		public GameInputManager(KeySettingData keySettingData)
+		public GameInputManager(InputDeviceManager inputDeviceMng)
 		{
-			this.keySettingData = keySettingData;
+			this.keyConfigData = null;
+			this.inputDeviceMng = inputDeviceMng;
 			this.currentGameInput = new GameInput();
-			this.inputDeviceMng = new InputDeviceManager();
 		}
 
 		public void Init()
@@ -31,14 +32,14 @@ namespace RLTPS.View
 		public void Update()
 		{
 			// Cursor
-			MouseInput mouse = inputDeviceMng.mouse;
+			MouseInput mouse = inputDeviceMng.Mouse;
 			this.currentGameInput.updateCursorPos(mouse.getPos());
 			this.currentGameInput.updateCursorMoving(mouse.getMoving());
 
 			// Button
-			Keyboard keyboard = inputDeviceManager.getKeyboard();
-			KeyCode[] keyPairs = this.keySettingData.getKeyPairs();
-			for(int i = 0 ; i < keyPairs.Length ; i++)
+			KeyboardInput keyboard = inputDeviceMng.Keyboard;
+			KeyCode[] keyPairs = this.keyConfigData.KeyPairs;
+			for(int i = 0 ; i < (int)EGameInput.MAX ; i++)
 			{
 				KeyCode keyCode = keyPairs[i];
 				if( KeyCode.Backspace <= keyCode && keyCode <= KeyCode.Menu ){

@@ -11,18 +11,16 @@ namespace RLTPS.Model
 	/// </summary>
 	public class GameData : IGameData
 	{
-
-		public readonly BarComponent BarComp { get; }
+		public BarComponent BarComponent { get; }
 
 		// Constructor
 		public GameData()
 		{
-			this.BarComp = new BarComponent();
+			this.BarComponent = new BarComponent();
 		}
 
-		public override readonly IBarData Bar { get { return this.BarComp.Data; } }
+		public override IBarData BarData { get => this.BarComponent.Data; }
 
 
-		
 	}
 }

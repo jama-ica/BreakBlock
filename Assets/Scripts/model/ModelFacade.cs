@@ -11,13 +11,14 @@ namespace RLTPS.Model
 	/// </summary>
 	public partial class ModelFacade
 	{
-		public readonly GameData gameData { get; }
+		public GameData GameData { get; }
 
-		SettingDataManager settingDataManager;
+		RLTPS.Model.ConfigDataManager settingDataManager;
 		
 		// Constructor
 		public ModelFacade()
 		{
+			this.settingDataManager = new ConfigDataManager();
 		}
 
 		

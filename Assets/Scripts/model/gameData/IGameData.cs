@@ -10,7 +10,7 @@ namespace RLTPS.Model
 	/// </summary>
 	public abstract class IGameData
 	{
-		public abstract readonly IBarData Bar { get;}
+		public abstract IBarData BarData { get; }
 
 		
 	}

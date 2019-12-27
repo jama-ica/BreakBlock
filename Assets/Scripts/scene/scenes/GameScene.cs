@@ -2,6 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Resource;
+using RLTPS.Model;
+using RLTPS.Control;
+using RLTPS.Stage;
+using RLTPS.View;
 
 namespace RLTPS.Scene
 {
@@ -13,12 +18,30 @@ namespace RLTPS.Scene
 	{
 		
 		// Constructor
-		public GameScene()
-			: base()
+		public GameScene(IGameData gameData, Controller controller, ResourceManager resourceMng, ViewManager viewMng)
+			: base(gameData, controller, resourceMng, viewMng)
 		{
 		}
 
+		public override void Load()
+		{
+			
+		}
+
+		public override void Start()
+		{
+			this.controller.StartStage();
+		}
 		
+		public override void Update()
+		{
+			this.stage.Update();
+		}
+
+		public override void End()
+		{
+			
+		}
 		
 	}
 }

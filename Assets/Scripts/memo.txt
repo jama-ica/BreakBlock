@@ -12,3 +12,7 @@ class Program
 フィールドには使えないっぽい
 Span<byte> buffer = stackalloc byte[BufferSize];
 Span<T> の T はアンマネージ型(ガベコレ対象外となる構造体など)
+
+# ダウンキャストありきの設計にするか
+もしくは controller から view の関数を呼び出す
+

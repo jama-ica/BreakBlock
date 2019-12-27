@@ -23,7 +23,7 @@ namespace RLTPS.Util
 			this.count = 0;
 		}
 
-		public readonly T[] List { get { return this.buf; } }
+		public T[] List { get { return this.buf; } }
 
 		public int Add(T item)
 		{

@@ -10,16 +10,16 @@ namespace RLTPS.View
 	/// </summary>
 	public class InputDeviceManager
 	{
-		public KeyboardInput keyboard { get; }
-		public MouseInput mouse { get; }
-		public GamePadInput gamePad { get; }
+		public KeyboardInput Keyboard { get; }
+		public MouseInput Mouse { get; }
+		public GamePadInput GamePad { get; }
 		
 		// Constructor
 		public InputDeviceManager()
 		{
-			this.keyboard = new KeyboardInput();
-			this.mouse = new MouseInput();
-			this.gamePad = new GamePadInput();
+			this.Keyboard = new KeyboardInput();
+			this.Mouse = new MouseInput();
+			this.GamePad = new GamePadInput();
 		}
 
 		public void Init()

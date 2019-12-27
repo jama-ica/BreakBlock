@@ -9,17 +9,19 @@ namespace RLTPS.Model
 	/// <summary>
 	/// 
 	/// </summary>
-	public partial class ModelFacade
+	public partial class ModelFacade // for Bar
 	{
 		
-		public IBarData CreateBar()
-		{
 
+		public BarComponent CreateBar()
+		{
+			//TODO
+			return new BarComponent();
 		}
 
 		public float GetBarSpeed()
 		{
-			return this.gameData.Bar.Speed;
+			return this.GameData.BarData.Speed;
 		}
 
 	}

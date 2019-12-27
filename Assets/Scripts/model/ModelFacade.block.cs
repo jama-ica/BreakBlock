@@ -12,9 +12,10 @@ namespace RLTPS.Model
 	public partial class ModelFacade
 	{
 		
-		public IBlockData CreateBlock()
+		public RLTPS.Model.BlockComponent CreateBlock()
 		{
 			//TODO
+			return new RLTPS.Model.BlockComponent();
 		}
 
 	}

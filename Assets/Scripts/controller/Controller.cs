@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Model;
 
-namespace RLTPS.Controller
+namespace RLTPS.Control
 {
 
 	/// <summary>
@@ -11,7 +12,7 @@ namespace RLTPS.Controller
 	/// </summary>
 	public partial class Controller
 	{
-		ModelFacade modelFacade;
+		readonly ModelFacade modelFacade;
 
 		// Constructor
 		public Controller(ModelFacade modelFacade)
@@ -19,7 +20,6 @@ namespace RLTPS.Controller
 			this.modelFacade = modelFacade;
 		}
 
-		public readonly IGameData GameData { get; }
 		
 		
 	}

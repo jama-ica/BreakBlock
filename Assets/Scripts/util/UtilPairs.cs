@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace TestCS
+namespace RLTPS.Util
 {
 	/// <summary>
 	/// 
@@ -30,7 +30,7 @@ namespace TestCS
 
 		public T GetItem(int key)
 		{
-			Assert.IsTrue( 0 < item.key && item.key < this.buf.Length );
+			Assert.IsTrue( 0 < key && key < this.buf.Length );
 			return this.buf[key];
 		}
 

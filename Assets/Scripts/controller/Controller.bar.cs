@@ -2,16 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UniRx;
 
-namespace RLTPS.Controller
+namespace RLTPS.Control
 {
 
 	/// <summary>
 	/// 
 	/// </summary>
-	public partial class Controller
+	public partial class Controller // for Bar
 	{
-		
+
+
 		
 		
 	}

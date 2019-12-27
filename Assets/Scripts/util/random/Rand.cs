@@ -7,7 +7,7 @@ namespace RLTPS.Util
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Rand : IRand
+	public class Rand
 	{
 		Random random;
 
@@ -55,7 +55,7 @@ namespace RLTPS.Util
 			if( list.Count == 0 ){
 				Assert.IsTrue(false);
 			}
-			int index = this.next(list.Count);
+			int index = this.Next(list.Count);
 			return list[index];
 		}
 
@@ -65,7 +65,7 @@ namespace RLTPS.Util
 			foreach(var item in list){
 				sum += item.weight;
 			}
-			int lot = this.next(sum);
+			int lot = this.Next(sum);
 			sum = 0;
 			foreach(var item in list){
 				if(sum + item.weight < lot){
@@ -82,7 +82,7 @@ namespace RLTPS.Util
 		// lot rate / max;
 		public bool Lot(int rate, int max)
 		{
-			return this.next(max) < rate;
+			return this.Next(max) < rate;
 		}
 		
 		// get shuffled order slist (list.Count = size) 
@@ -92,7 +92,7 @@ namespace RLTPS.Util
 			for(int i = 0 ; i < size ; i++){
 				list[i] = i;
 			}
-			return shuffle(list);
+			return Shuffle(list);
 		}
 
 		// get shuffled list
@@ -100,7 +100,7 @@ namespace RLTPS.Util
 		{
 			Type temp;
 			for(int i = 0, size = list.Count ; i < size ; i++){
-				int r = this.next(size);
+				int r = this.Next(size);
 				temp = list[r];
 				list[r] = list[i];
 				list[i] = temp;
