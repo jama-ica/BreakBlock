@@ -30,7 +30,7 @@ namespace RLTPS.Util
 
 		public T GetItem(int key)
 		{
-			Assert.IsTrue( 0 < key && key < this.buf.Length );
+			Assert.IsTrue( 0 <= key && key < this.buf.Length );
 			return this.buf[key];
 		}
 

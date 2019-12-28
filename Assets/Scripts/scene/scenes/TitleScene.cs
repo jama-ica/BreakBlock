@@ -32,6 +32,11 @@ namespace RLTPS.Scene
 		{
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 			//this.controller.StartTitle();
+
+			//TODO
+			var resource = new UIPrefabResource();
+			var gameObj = resource.LoadOrGet(EUIPrefab.Title);
+			GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
 		}
 
 		protected override void UpdateScene()

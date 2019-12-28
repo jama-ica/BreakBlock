@@ -17,11 +17,11 @@ namespace RLTPS
 	/// </summary>
 	public class Game : MonoBehaviour
 	{
+		ResourceManager resourceMng;
 		ModelFacade modelMng;
 		Controller controller;
 		ViewManager viewMng;
 		GameStage stage;
-		ResourceManager resourceMng;
 		SceneManager sceneMng;
 		
 		// Constructor
@@ -31,6 +31,7 @@ namespace RLTPS
 			this.modelMng = new ModelFacade();
 			this.controller = new Controller(this.modelMng);
 			this.viewMng = new ViewManager(this.modelMng.GameData, this.controller, this.resourceMng);
+			this.stage = new GameStage();
 			this.sceneMng = new SceneManager(this.modelMng.GameData, this.controller, this.stage, this.viewMng, this.resourceMng);
 		}
 
