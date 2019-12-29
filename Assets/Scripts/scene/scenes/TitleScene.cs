@@ -36,7 +36,13 @@ namespace RLTPS.Scene
 			//TODO
 			var resource = new UIPrefabResource();
 			var gameObj = resource.LoadOrGet(EUIPrefab.Title);
-			GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
+			var obj = GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
+			Assert.IsNotNull(obj);
+			var t = obj.transform.Find("Panel/Text");
+			Assert.IsNotNull(t);
+			var text = t.GetComponent<UnityEngine.UI.Text>();
+			Assert.IsNotNull(text);
+			text.text = "あああ";
 		}
 
 		protected override void UpdateScene()
