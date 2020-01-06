@@ -8,15 +8,18 @@ namespace RLTPS.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class IProp
+	public abstract class StageObject
 	{
-		
+		public GameObject GameObj { get; }
+
 		// Constructor
-		public IProp()
+		public StageObject(GameObject GameObj)
 		{
+			this.GameObj = GameObj;
 		}
 
-		
+		public abstract string GetPath();
+
 		
 	}
 }

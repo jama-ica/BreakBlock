@@ -17,7 +17,15 @@ namespace RLTPS.Unity
 		{
 		}
 
-		
+		public GameObject Stage(GameObject gameObj)
+		{
+			return GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
+		}
+
+		public void UnStage()
+		{
+			//TODO
+		}
 		
 	}
 }

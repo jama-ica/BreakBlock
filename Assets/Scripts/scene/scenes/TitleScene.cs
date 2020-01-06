@@ -43,11 +43,24 @@ namespace RLTPS.Scene
 			var text = t.GetComponent<UnityEngine.UI.Text>();
 			Assert.IsNotNull(text);
 			text.text = "あああ";
+
+			//TODO
+			var b = obj.transform.Find("Panel/Button");
+			var button = b.GetComponent<UnityEngine.UI.Button>();
+			button.onClick.AddListener( () => {
+				Debug.Log("You have clicked the button!");
+			});
 		}
 
 		protected override void UpdateScene()
 		{
 			this.stage.Update();
+		}
+
+		void TaskOnClick()
+		{
+			//Output this to console when the Button is clicked
+			Debug.Log("You have clicked the button!");
 		}
 
 		protected override bool End()

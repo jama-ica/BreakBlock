@@ -10,6 +10,7 @@ namespace RLTPS.Resource
 	/// </summary>
 	public class ResourceManager
 	{
+		public UIPrefabResource UI { get; }
 		
 		// Constructor
 		public ResourceManager()

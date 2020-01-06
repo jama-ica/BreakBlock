@@ -2,22 +2,26 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Resource;
 
-namespace RLTPS.View
+namespace RLTPS.Stage
 {
-
 	/// <summary>
 	/// 
 	/// </summary>
-	public class StageManager
+	public class TitleUI : StageObject
 	{
 		
 		// Constructor
-		public StageManager()
+		public TitleUI()
 		{
 		}
 
-		
+		public string GetPath()
+		{
+			return EUIPrefab.Title.ToPath();
+		}
+
 		
 	}
 }
