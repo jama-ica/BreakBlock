@@ -31,30 +31,28 @@ namespace RLTPS.Scene
 		protected override void Start()
 		{
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
-			//this.controller.StartTitle();
+			
+			this.controller.OnCreated().Subscribe( args => {
+				switch(args.type)
+				{
+				case ECreatedEvent.Title: StageTitleUI(); break;
+				default:
+					Debug.LogWarning("!type = " + args.type);
+					break;
+				}
+			} );
 
-			//TODO
-			var resource = new UIPrefabResource();
-			var gameObj = resource.LoadOrGet(EUIPrefab.Title);
-			var obj = GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
-			Assert.IsNotNull(obj);
-			var t = obj.transform.Find("Panel/Text");
-			Assert.IsNotNull(t);
-			var text = t.GetComponent<UnityEngine.UI.Text>();
-			Assert.IsNotNull(text);
-			text.text = "あああ";
-
-			//TODO
-			var b = obj.transform.Find("Panel/Button");
-			var button = b.GetComponent<UnityEngine.UI.Button>();
-			button.onClick.AddListener( () => {
-				Debug.Log("You have clicked the button!");
-			});
+			this.controller.StartTitle();
 		}
 
 		protected override void UpdateScene()
 		{
-			this.stage.Update();
+			this.gameStage.Update();
+		}
+
+		protected override bool End()
+		{
+			return false;
 		}
 
 		void TaskOnClick()
@@ -63,9 +61,10 @@ namespace RLTPS.Scene
 			Debug.Log("You have clicked the button!");
 		}
 
-		protected override bool End()
+		void StageTitleUI()
 		{
-			return false;
+			var stageObj = TitleUIStageObject.Create(this.resourceMng.UI);
+			this.gameStage.Stage(stageObj);
 		}
 
 	}

@@ -37,7 +37,7 @@ namespace RLTPS.Scene
 
 		
 		// Constructor
-		public SceneManager(IGameData gameData, Controller controller, GameStage stage, ViewManager viewMng, ResourceManager resourceMng)
+		public SceneManager(IGameData gameData, Controller controller, ViewManager viewMng, ResourceManager resourceMng)
 		{
 			this.controller = controller;
 			//--

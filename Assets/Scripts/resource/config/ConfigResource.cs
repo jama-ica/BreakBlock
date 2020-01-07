@@ -2,23 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Model;
 
 namespace RLTPS.Resource
 {
+
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ResourceManager
+	public class ConfigResource
 	{
-		public UIResource UI { get; }
 		
 		// Constructor
-		public ResourceManager()
+		public ConfigResource()
 		{
-			this.UI = new UIResource();
 		}
 
-		
+		public ConfigData Load()
+		{
+			//TODO 
+			return new ConfigData();
+		}
 		
 	}
 }

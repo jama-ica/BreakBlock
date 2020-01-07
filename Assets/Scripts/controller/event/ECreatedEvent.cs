@@ -10,7 +10,10 @@ namespace RLTPS.Control
 	/// </summary>
 	public enum ECreatedEvent
 	{
+		Title,
 		Bar,
+		Ball,
+		Block,
 		//--
 		MAX
 		

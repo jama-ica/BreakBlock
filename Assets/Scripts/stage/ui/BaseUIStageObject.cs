@@ -2,23 +2,21 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Resource;
 
-namespace RLTPS.Resource
+namespace RLTPS.Stage
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ResourceManager
+	public abstract class BaseUIStageObject : BaseStageObject
 	{
-		public UIResource UI { get; }
 		
 		// Constructor
-		public ResourceManager()
+		public BaseUIStageObject(GameObject gameObj)
+			: base(gameObj)
 		{
-			this.UI = new UIResource();
 		}
 
-		
-		
 	}
 }

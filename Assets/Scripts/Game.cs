@@ -32,7 +32,7 @@ namespace RLTPS
 			this.controller = new Controller(this.modelMng);
 			this.viewMng = new ViewManager(this.modelMng.GameData, this.controller, this.resourceMng);
 			this.stage = new GameStage();
-			this.sceneMng = new SceneManager(this.modelMng.GameData, this.controller, this.stage, this.viewMng, this.resourceMng);
+			this.sceneMng = new SceneManager(this.modelMng.GameData, this.controller, this.viewMng, this.resourceMng);
 		}
 
 		public void Start()

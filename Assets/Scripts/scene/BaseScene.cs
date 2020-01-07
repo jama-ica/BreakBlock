@@ -31,7 +31,7 @@ namespace RLTPS.Scene
 		protected readonly IGameData gameData;
 		protected readonly Controller controller;
 		protected readonly ResourceManager resourceMng;
-		protected readonly GameStage stage;
+		protected readonly GameStage gameStage;
 		protected readonly UIManager ui;
 		protected readonly SoundPlayer soundPlayer;
 		protected readonly EffectPlayer effectPlayer;
@@ -47,7 +47,7 @@ namespace RLTPS.Scene
 			this.controller = controller;
 			this.resourceMng = resourceMng;
 			Assert.IsNotNull(viewMng);
-			this.stage = viewMng.Stage;
+			this.gameStage = viewMng.Stage;
 			this.ui = viewMng.UI;
 			this.soundPlayer = viewMng.SoundPlayer;
 			this.effectPlayer = viewMng.EffectPlayer;

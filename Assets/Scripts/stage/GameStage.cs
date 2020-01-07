@@ -11,69 +11,48 @@ namespace RLTPS.Stage
 	/// </summary>
 	public class GameStage
 	{
-		StageCamera camera;
-		UtilArray<IActor> actors;
-		UtilArray<Stage.IProp> props;
+		//StageCamera camera;
+		UtilArray<BaseUIStageObject> uiObjs;
 		
 		// Constructor
 		public GameStage()
 		{
-			this.camera = new StageCamera();
-			this.actors = new UtilArray<IActor>(100);
-			this.props = new UtilArray<Stage.IProp>(100);
+			this.uiObjs = new UtilArray<BaseUIStageObject>(100);
 		}
 
 		public void Update()
 		{
-			for( int i = 0, size = this.actors.Count() ; i < size ; i++ )
+			for( int i = 0, size = this.uiObjs.Count() ; i < size ; i++ )
 			{
-				var actor = this.actors.Get(i);
-				if( actor is null ){
+				var obj = this.uiObjs.Get(i);
+				if( obj is null ){
 					continue;
 				}
-				actor.Update();
+				obj.Update();
 			}
 		}
 
 		public void ClearAll()
 		{
-
+			this.uiObjs.Clear();
 		}
 
-		/*---------------------------------------
-			Actor
-		  ---------------------------------------*/
-		public Stage.EActorID AddActor(IActor actor)
+		public EUIID Stage(BaseUIStageObject stageObj)
 		{
-			return (Stage.EActorID)this.actors.Add(actor);
+			GameObject newGameObj = GameObject.Instantiate(stageObj.GameObj, new Vector3(0, 0, 0), Quaternion.identity);
+			stageObj.SetGameObj(newGameObj);
+			stageObj.Start();
+			return (EUIID)this.uiObjs.Add(stageObj);
 		}
 
-		public IActor GetActor(Stage.EActorID id)
+		public BaseUIStageObject GetUIStageObject(EUIID id)
 		{
-			return this.actors.Get((int)id);
+			return this.uiObjs.Get((int)id);
 		}
 
-		public void RemoveActor(Stage.EActorID id)
+		public void UnStage(EUIID id)
 		{
-			this.actors.Remove((int)id);
-		}
-
-		/*---------------------------------------
-			Prop
-		  ---------------------------------------*/
-		public Stage.EPropID AddProp(Stage.IProp prop)
-		{
-			return (Stage.EPropID)this.props.Add(prop);
-		}
-		
-		public Stage.IProp GetProp(Stage.EPropID id)
-		{
-			return this.props.Get((int)id);
-		}
-
-		public void RemoveProp(Stage.EPropID id)
-		{
-			this.props.Remove((int)id);
+			this.uiObjs.Remove((int)id);
 		}
 
 	}

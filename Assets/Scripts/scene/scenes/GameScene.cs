@@ -37,7 +37,7 @@ namespace RLTPS.Scene
 		
 		protected override void UpdateScene()
 		{
-			this.stage.Update();
+			this.gameStage.Update();
 		}
 
 		protected override bool End()

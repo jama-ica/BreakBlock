@@ -5,17 +5,16 @@ using UnityEngine.Assertions;
 
 namespace RLTPS.Resource
 {
+
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ResourceManager
+	public class SaveDataResource
 	{
-		public UIResource UI { get; }
 		
 		// Constructor
-		public ResourceManager()
+		public SaveDataResource()
 		{
-			this.UI = new UIResource();
 		}
 
 		

@@ -16,3 +16,10 @@ Span<T> の T はアンマネージ型(ガベコレ対象外となる構造体�
 # ダウンキャストありきの設計にするか
 もしくは controller から view の関数を呼び出す
 
+# 参照値渡しで受け取った場合の null に注意
+var a = new classA()
+var b = new classB(a)
+a = null;
+//b.a is not null!
+
+# 
