@@ -19,20 +19,7 @@ namespace RLTPS.Control
 			CreateTitle();
 		}
 
-		Subject<(ECreatedEvent type, IGameComponent component)> createdEvent = new Subject<(ECreatedEvent type, IGameComponent component)>();
 
-		public IObservable<(ECreatedEvent type, IGameComponent component)> OnCreated() => this.createdEvent;
-
-		private void CreateTitle()
-		{
-			this.createdEvent.OnNext( (ECreatedEvent.Title, null) );
-		}
-
-		private void CreateBar()
-		{
-			BarComponent bar = this.modelFacade.CreateBar();
-			this.createdEvent.OnNext((ECreatedEvent.Bar, bar));
-		}
 
 
 	}

@@ -38,7 +38,7 @@ namespace RLTPS.Scene
 		protected override void UpdateScene()
 		{
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);			
-			ChangeSceneTo(EScene.Title);
+			ChangeSceneTo(EScene.Game);
 		}
 
 		protected override bool End()

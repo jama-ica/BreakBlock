@@ -12,9 +12,6 @@ namespace RLTPS.Control
 	/// </summary>
 	public partial class Controller // for Bar
 	{
-
-
-		
 		
 	}
 }

@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RLTPS.Stage
+namespace RLTPS.Model
 {
-
 	/// <summary>
 	/// 
 	/// </summary>
-	public class StageCamera
+	public class BallData
 	{
-		
+		public float Speed { get; }
+
 		// Constructor
-		public StageCamera()
+		public BallData()
 		{
 		}
 
-		
-		
+		public void SetSpeed(float speed)
+		{
+			this.Speed = speed;
+		}
+
+
+
 	}
 }

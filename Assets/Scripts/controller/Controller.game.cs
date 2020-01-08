@@ -16,19 +16,10 @@ namespace RLTPS.Control
 		public void StartStage()
 		{
 			CreateBar();
-			//CreateBall();
-			//CreateBlocks();
+			CreateBall();
+			CreateBlocks();
 		}
 		
-		// Subject<(ECreatedEvent type, IGameComponent component)> createdEvent = new Subject<ECreatedEvent>();
-
-		// public IObservable<ECreatedEvent> OnCreated() => this.createdEvent;
-
-		// private void CreateBar()
-		// {
-		// 	this.modelFacade.CreateBar();
-		// 	createdEvent.OnNext(ECreatedEvent.Bar);
-		// }
 
 	}
 }
