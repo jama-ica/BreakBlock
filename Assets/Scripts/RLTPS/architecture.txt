@@ -1,0 +1,48 @@
+# Point
+単方向データフロー
+それが実現できていれば、MVCでもFLUXでもDDDでも何でもいい
+
+# 全体
+Model
+Controller
+View
+Resource
+
+1. View や タイミング等により Controller へ Event が発行される
+	Event ... Controller の function call
+
+2. Controller は Event から (必要ならば Resource を操作したりして) Model へ Event 発行
+	Event ... Model の function call
+
+3. Model の状態を View が描画する
+
+実際には、2-3 の間で
+
+2.5	Controller は Model からの結果により Event を発行
+	Event ... Controller が UniRx のイベントを発行、View がこれを Subscribe
+
+# Model
+	Model : IModel
+		- Data
+
+# Controller : IController
+	Controller
+		- IModel
+		- IResourceLoader
+		- IResourceWriter
+
+# View
+	Scene
+		- IController
+		- Entity
+	Entity
+		- IController
+		- IStage
+	Stage
+		- StageObj
+		- Sound
+		- Effect
+		- UI
+
+# Resource
+	Resource : IResourceLoader, IResourceWriter
