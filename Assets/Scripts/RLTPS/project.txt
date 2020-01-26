@@ -37,9 +37,9 @@ stage
 view
 	input
 		device
-			-KeyboardInput
-			-MouseInput
-			-GamePadInput
+			-KeyboardDevice
+			-MouseDevice
+			-GamePadDevice
 		-InputState
 		-InputManger
 	sound

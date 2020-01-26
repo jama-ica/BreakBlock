@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RLTPS.View
+namespace RLTPS.View.Device
 {
 
 	/// <summary>
 	/// 
 	/// </summary>
-	public class KeyboardInput
+	public class KeyboardDevice
 	{
 		
 		// Constructor
-		public KeyboardInput()
+		public KeyboardDevice()
 		{
 		}
 
-		public EButtonState getKeyState(KeyCode keyCode)
+		public EButtonState GetKeyState(KeyCode keyCode)
 		{
 			Assert.IsTrue(KeyCode.Backspace <= keyCode && keyCode <= KeyCode.Menu);
 
-			if(Input.GetKeyDown(keyCode))
+			if(UnityEngine.Input.GetKeyDown(keyCode))
 			{
 				return EButtonState.DOWN;
 			}
-			else if(Input.GetKeyUp(keyCode))
+			else if(UnityEngine.Input.GetKeyUp(keyCode))
 			{
 				return EButtonState.UP;
 			}
-			else if (Input.GetKey(keyCode))
+			else if (UnityEngine.Input.GetKey(keyCode))
 			{
 				return EButtonState.PRESS;
 			}

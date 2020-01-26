@@ -20,7 +20,7 @@ namespace RLTPS.Scene
 		readonly Controller controller;
 		readonly ResourceManager resourceMng;
 		readonly ViewManager viewMng;
-		readonly Subject<EScene> sbjChangeScene;
+		readonly UniRx.Subject<EScene> sbjChangeScene;
 
 		// Constructor
 		public SceneFactory(Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)

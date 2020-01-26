@@ -20,7 +20,7 @@ namespace RLTPS.View.Entity
 		public BaseGameEntity(Controller controller, ViewManager viewMng)
 		{
 			this.controller = controller;
-			this.gameInput = viewMng.GameInputMng.getCurrentGameInput();
+			this.gameInput = viewMng.InputMng.GetCurrentGameInput();
 			this.gameStage = viewMng.Stage;
 			this.soundPlayer = viewMng.SoundPlayer;
 		}

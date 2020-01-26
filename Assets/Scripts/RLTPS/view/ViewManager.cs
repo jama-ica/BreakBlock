@@ -7,6 +7,8 @@ using RLTPS.Resource;
 using RLTPS.Control;
 using RLTPS.View.Entity;
 using RLTPS.View.Stage;
+using RLTPS.View.Device;
+using RLTPS.View.Input;
 
 namespace RLTPS.View
 {
@@ -19,12 +21,13 @@ namespace RLTPS.View
 		readonly Controller controller;
 		readonly ResourceManager resourceMng;
 		//
-		public GameStage Stage {get;}
-		public UIManager UI {get;}
-		public SoundPlayer SoundPlayer {get;}
-		public EffectPlayer EffectPlayer {get;}
-		public GameInputManager GameInputMng {get;}
-		public GameEntityManager GameEntityMng {get;}
+		public GameStage Stage { get; }
+		public UIManager UI { get; }
+		public SoundPlayer SoundPlayer { get; }
+		public EffectPlayer EffectPlayer { get; }
+		public DeviceManager deviceMng { get; }
+		public InputManager InputMng { get; }
+		public GameEntityManager GameEntityMng { get; }
 
 		// Constructor
 		public ViewManager(Controller controller, ResourceManager resourceMng)
@@ -36,8 +39,9 @@ namespace RLTPS.View
 			this.UI = new UIManager();
 			this.SoundPlayer = new SoundPlayer();
 			this.EffectPlayer = new EffectPlayer();
-			var inputDeviceMng = new InputDeviceManager();
-			this.GameInputMng = new GameInputManager(inputDeviceMng);
+			this.deviceMng = new DeviceManager();
+			this.InputMng = new InputManager(deviceMng);
+			this.GameEntityMng = new GameEntityManager(controller, this);
 		}
 
 

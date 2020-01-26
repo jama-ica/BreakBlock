@@ -9,6 +9,7 @@ using RLTPS.Control;
 using RLTPS.View.Stage;
 using RLTPS.View;
 using RLTPS.View.Entity;
+using RLTPS.View.Input;
 
 namespace RLTPS.Scene
 {
@@ -30,8 +31,8 @@ namespace RLTPS.Scene
 		}
 
 		protected readonly Controller controller;
-		GameEntityManager GameEntityMng;
-		GameInputManager GameInputMng;
+		protected readonly GameEntityManager GameEntityMng;
+		protected readonly InputManager InputMng;
 
 		protected readonly ResourceManager resourceMng;
 		protected readonly Subject<EScene> sbjChangeScene;
@@ -43,7 +44,7 @@ namespace RLTPS.Scene
 		{
 			this.controller = controller;
 			this.GameEntityMng = viewMng.GameEntityMng;
-			this.GameInputMng = viewMng.GameInputMng;
+			this.InputMng = viewMng.InputMng;
 			this.resourceMng = resourceMng;
 			this.sbjChangeScene = sbjChangeScene;
 			//
@@ -89,7 +90,7 @@ namespace RLTPS.Scene
 
 		protected void UpdateScene()
 		{
-			this.GameInputMng.Update();
+			this.InputMng.Update();
 			this.GameEntityMng.Update();
 		}
 

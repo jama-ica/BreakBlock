@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RLTPS.View
+namespace RLTPS.View.Device
 {
 
 	/// <summary>
 	/// 
 	/// </summary>
-	public class GamePadInput
+	public class GamePadDevice
 	{
 		
 		// Constructor
-		public GamePadInput()
+		public GamePadDevice()
 		{
 		}
 

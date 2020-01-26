@@ -24,17 +24,17 @@ namespace RLTPS.View
 			this.cursorMoving = (0.0f, 0.0f);
 		}
 
-		public void updateButtonState(EGameInput type, EButtonState buttonState)
+		public void UpdateButtonState(EGameInput type, EButtonState buttonState)
 		{
 			this.buttonStates[(int)type] = buttonState;
 		}
 
-		public void updateCursorPos((float x, float y) pos)
+		public void UpdateCursorPos((float x, float y) pos)
 		{
 			this.cursorPos = pos;
 		}
 
-		public void updateCursorMoving((float x, float y) moving)
+		public void UpdateCursorMoving((float x, float y) moving)
 		{
 			this.cursorMoving = moving;
 		}
@@ -42,32 +42,32 @@ namespace RLTPS.View
 		/**
 		 *	Button state
 		 */
-		public EButtonState getButtonState(EGameInput type)
+		public EButtonState GetButtonState(EGameInput type)
 		{
 			return this.buttonStates[(int)type];
 		}
 
-		public bool isButtonState(EGameInput type, EButtonState buttonState)
+		public bool IsButtonState(EGameInput type, EButtonState buttonState)
 		{
 			return (this.buttonStates[(int)type] == buttonState);
 		}
 
-		public bool isTriggerOn(EGameInput type)
+		public bool IsTriggerOn(EGameInput type)
 		{
 			return (this.buttonStates[(int)type] == EButtonState.DOWN);
 		}
 
-		public bool isTriggerOff(EGameInput type)
+		public bool IsTriggerOff(EGameInput type)
 		{
 			return (this.buttonStates[(int)type] == EButtonState.UP);
 		}
 
-		public bool isOn(EGameInput type)
+		public bool IsOn(EGameInput type)
 		{
 			return (this.buttonStates[(int)type] == EButtonState.PRESS || this.buttonStates[(int)type] == EButtonState.DOWN);
 		}
 
-		public bool isOff(EGameInput type)
+		public bool IsOff(EGameInput type)
 		{
 			return (this.buttonStates[(int)type] == EButtonState.IDLE || this.buttonStates[(int)type] == EButtonState.UP);
 		}
@@ -75,12 +75,12 @@ namespace RLTPS.View
 		/**
 		 *	Cursor
 		 */
-		public (float x, float y) getCursorPos()
+		public (float x, float y) GetCursorPos()
 		{
 			return this.cursorPos;
 		}
 
-		public (float x, float y) getCursorMoving()
+		public (float x, float y) GetCursorMoving()
 		{
 			return this.cursorMoving;
 		}

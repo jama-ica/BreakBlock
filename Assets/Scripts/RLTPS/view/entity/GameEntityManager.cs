@@ -13,11 +13,11 @@ namespace RLTPS.View.Entity
 	/// </summary>
 	public class GameEntityManager : IViewCommand
 	{
-		Controller controller;
-		ViewManager viewMng;
+		readonly Controller controller;
+		readonly ViewManager viewMng;
 		//--
-		UtilArray<BaseGameEntity> gameEntities;
-		UtilArray<BaseUpdatableGameEntity> updatableEntities;
+		UtilList<BaseGameEntity> entities;
+		UtilList<BaseUpdatableGameEntity> updatableEntities;
 
 		// Constructor
 		public GameEntityManager(Controller controller, ViewManager viewMng)
@@ -25,15 +25,16 @@ namespace RLTPS.View.Entity
 			this.controller = controller;
 			this.viewMng = viewMng;
 			//
-			this.gameEntities = new UtilArray<BaseGameEntity>(100);
-			this.updatableEntities = new UtilArray<BaseUpdatableGameEntity>(100);
+			this.entities = new UtilList<BaseGameEntity>(100);
+			this.updatableEntities = new UtilList<BaseUpdatableGameEntity>(100);
 		}
 
 		public void Update()
 		{
-			for(int i = 0 ; i < this.updatableEntities.Size() ; i ++)
+			BaseUpdatableGameEntity[] list = this.updatableEntities.List;
+			for(int i = 0, size = this.updatableEntities.Size ; i < size ; i ++)
 			{
-				this.updatableEntities.Get(i).Update();
+				list[i].Update();
 			}
 		}
 
