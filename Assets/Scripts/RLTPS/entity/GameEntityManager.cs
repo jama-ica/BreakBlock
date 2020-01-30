@@ -5,8 +5,9 @@ using UnityEngine.Assertions;
 using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.Util;
+using RLTPS.View;
 
-namespace RLTPS.View.Entity
+namespace RLTPS.Entity
 {
 	/// <summary>
 	/// 

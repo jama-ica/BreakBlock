@@ -14,24 +14,35 @@ namespace RLTPS.View.Input
 	{
 		
 		readonly KeyboardDevice keyboard;
+		Dictionary<int, EGameInput> keyMap;
 
 		// Constructor
 		public KeyboardInputDevice(KeyboardDevice keyboard)
 		{
 			this.keyboard = keyboard;
+			this.keyMap = new Dictionary<int, EGameInput>();
 		}
 
-		public void UpdateInput(ref GameInput gameInput, KeyConfigData keyConfigData)
+		public void InitKeyConfig(KeyConfigData keyConfigData)
 		{
-			KeyCode[] keyPairs = keyConfigData.KeyPairs;
-			for(int i = 0 ; i < keyPairs.Length ; i++)
+			this.keyMap.Clear();
+			foreach(KeyValuePair<int, EGameInput> item in keyConfigData.KeyMap)
 			{
-				KeyCode keyCode = keyPairs[i];
-				if( KeyCode.Backspace > keyCode || keyCode > KeyCode.Menu ){
+				int keyCode = item.Key;
+				if( (int)KeyCode.Backspace > keyCode || keyCode > (int)KeyCode.Menu ){
 					continue;
 				}
+				this.keyMap[keyCode] = item.Value;
+			}
+		}
+
+		public void UpdateInput(ref GameInput gameInput)
+		{
+			foreach(KeyValuePair<int, EGameInput> item in this.keyMap)
+			{
+				KeyCode keyCode = (KeyCode)item.Key;
 				EButtonState keyState = this.keyboard.GetKeyState(keyCode);
-				gameInput.UpdateButtonState((EGameInput)i, keyState);
+				gameInput.UpdateButtonState(item.Value, keyState);
 			}
 		}
 		

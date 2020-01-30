@@ -5,10 +5,11 @@ using UnityEngine.Assertions;
 using RLTPS.Model;
 using RLTPS.Resource;
 using RLTPS.Control;
-using RLTPS.View.Entity;
+using RLTPS.Entity;
 using RLTPS.View.Stage;
 using RLTPS.View.Device;
 using RLTPS.View.Input;
+using RLTPS.View.Sound;
 
 namespace RLTPS.View
 {
@@ -27,7 +28,6 @@ namespace RLTPS.View
 		public EffectPlayer EffectPlayer { get; }
 		public DeviceManager deviceMng { get; }
 		public InputManager InputMng { get; }
-		public GameEntityManager GameEntityMng { get; }
 
 		// Constructor
 		public ViewManager(Controller controller, ResourceManager resourceMng)
@@ -41,7 +41,6 @@ namespace RLTPS.View
 			this.EffectPlayer = new EffectPlayer();
 			this.deviceMng = new DeviceManager();
 			this.InputMng = new InputManager(deviceMng);
-			this.GameEntityMng = new GameEntityManager(controller, this);
 		}
 
 

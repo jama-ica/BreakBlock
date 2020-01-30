@@ -11,28 +11,14 @@ namespace RLTPS.Model
 	public class KeyConfig
 	{
 		
-		public KeyCode[] KeyCodes { get; }
+		public KeyConfigData Data { get; }
 
 		// Constructor
 		public KeyConfig()
 		{
-			this.KeyCodes = new KeyCode[(int)EGameInput.MAX];
+			this.Data = new KeyConfigData();
 		}
 
-		public void SetKeyCode(EGameInput type, KeyCode code)
-		{
-			this.KeyCodes[(int)type] = code;
-		}
-
-		public KeyCode GetKeyCode(EGameInput type)
-		{
-			return this.KeyCodes[(int)type];
-		}
-
-		public int Length()
-		{
-			return this.KeyCodes.Length;
-		}
 
 	}
 }

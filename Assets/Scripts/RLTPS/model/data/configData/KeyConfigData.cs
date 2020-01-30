@@ -10,23 +10,22 @@ namespace RLTPS.Model
 	/// </summary>
 	public class KeyConfigData
 	{
-		
-		public KeyCode[] KeyPairs { get; }
+		public Dictionary<int, EGameInput> KeyMap { get; private set; }
 
 		// Constructor
 		public KeyConfigData()
 		{
-			this.KeyPairs = new KeyCode[(int)EGameInput.MAX];
+			this.KeyMap = new Dictionary<int, EGameInput>();
 		}
 
-		public void SetKeyPair(EGameInput gameInput, KeyCode keyCode)
+		public void ClearAll()
 		{
-			this.KeyPairs[(int)gameInput] = keyCode;
+			this.KeyMap.Clear();
 		}
 
-		public KeyCode GetKeyCode(EGameInput gameInput)
+		public void SetPair(KeyCode keyCode, EGameInput gameInput)
 		{
-			return this.KeyPairs[(int)gameInput];
+			this.KeyMap[(int)keyCode] = gameInput;
 		}
 
 	}

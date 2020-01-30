@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Control;
+using RLTPS.View;
 using RLTPS.View.Stage;
+using RLTPS.View.Input;
+using RLTPS.View.Sound;
 
-namespace RLTPS.View.Entity
+namespace RLTPS.Entity
 {
 	/// <summary>
 	/// 
@@ -13,14 +16,14 @@ namespace RLTPS.View.Entity
 	public abstract class BaseGameEntity
 	{
 		protected readonly Controller controller;
-		protected readonly GameInput gameInput;
+		protected readonly GameInput currentInput;
 		protected readonly GameStage gameStage;
 		protected readonly SoundPlayer soundPlayer;
 
 		public BaseGameEntity(Controller controller, ViewManager viewMng)
 		{
 			this.controller = controller;
-			this.gameInput = viewMng.InputMng.GetCurrentGameInput();
+			this.currentInput = viewMng.InputMng.GetCurrentGameInput();
 			this.gameStage = viewMng.Stage;
 			this.soundPlayer = viewMng.SoundPlayer;
 		}

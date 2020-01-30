@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Control;
+using RLTPS.View;
 using RLTPS.View.Stage;
 
-namespace RLTPS.View.Entity
+namespace RLTPS.Entity
 {
 	/// <summary>
 	/// 
@@ -32,7 +33,12 @@ namespace RLTPS.View.Entity
 		
 		public override void Update()
 		{
-
+			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
+				//TODO
+			}
+			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
+				//TODO
+			}
 		}
 
 

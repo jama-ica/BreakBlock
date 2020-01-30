@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Model;
 
-namespace RLTPS.View
+namespace RLTPS.View.Input
 {
 
 	/// <summary>
@@ -13,8 +13,8 @@ namespace RLTPS.View
 	public class GameInput
 	{
 		EButtonState[] buttonStates;
-		(float x, float y) cursorPos;
-		(float x, float y) cursorMoving;
+		public (float x, float y) cursorPos { get; private set; }
+		public (float x, float y) cursorMoving { get; private set; }
 		
 		// Constructor
 		public GameInput()
@@ -24,24 +24,14 @@ namespace RLTPS.View
 			this.cursorMoving = (0.0f, 0.0f);
 		}
 
+		/**
+		 *	Button state
+		 */
 		public void UpdateButtonState(EGameInput type, EButtonState buttonState)
 		{
 			this.buttonStates[(int)type] = buttonState;
 		}
 
-		public void UpdateCursorPos((float x, float y) pos)
-		{
-			this.cursorPos = pos;
-		}
-
-		public void UpdateCursorMoving((float x, float y) moving)
-		{
-			this.cursorMoving = moving;
-		}
-
-		/**
-		 *	Button state
-		 */
 		public EButtonState GetButtonState(EGameInput type)
 		{
 			return this.buttonStates[(int)type];
@@ -75,15 +65,16 @@ namespace RLTPS.View
 		/**
 		 *	Cursor
 		 */
-		public (float x, float y) GetCursorPos()
+		public void UpdateCursorPos((float x, float y) pos)
 		{
-			return this.cursorPos;
+			this.cursorPos = pos;
 		}
 
-		public (float x, float y) GetCursorMoving()
+		public void UpdateCursorMoving((float x, float y) moving)
 		{
-			return this.cursorMoving;
+			this.cursorMoving = moving;
 		}
+
 		
 	}
 }

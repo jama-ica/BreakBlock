@@ -15,7 +15,6 @@ namespace RLTPS.View.Input
 	{
 		readonly KeyboardInputDevice keyboard;
 		readonly MouseInputDevice mouse;
-		/*readonly*/ KeyConfigData keyConfigData;
 		//--
 		GameInput currentGameInput;
 		
@@ -29,13 +28,14 @@ namespace RLTPS.View.Input
 
 		public void Init(KeyConfigData keyConfigData)
 		{
-			this.keyConfigData = keyConfigData;
+			this.keyboard.InitKeyConfig(keyConfigData);
+			this.mouse.InitKeyConfig(keyConfigData);
 		}
 
 		public void Update()
 		{
-			this.mouse.UpdateInput(ref currentGameInput, this.keyConfigData);
-			this.keyboard.UpdateInput(ref currentGameInput, this.keyConfigData);
+			this.mouse.UpdateInput(ref currentGameInput);
+			this.keyboard.UpdateInput(ref currentGameInput);
 		}
 
 		public GameInput GetCurrentGameInput()

@@ -13,31 +13,41 @@ namespace RLTPS.View.Input
 	public class MouseInputDevice
 	{
 		MouseDevice mouse;
-		
+		Dictionary<int, EGameInput> keyMap;
+
 		// Constructor
 		public MouseInputDevice(MouseDevice mouse)
 		{
 			this.mouse = mouse;
+			this.keyMap = new Dictionary<int, EGameInput>();
 		}
 
-		public void UpdateInput(ref GameInput gameInput, KeyConfigData keyConfigData)
+		public void InitKeyConfig(KeyConfigData keyConfigData)
+		{
+			this.keyMap.Clear();
+			foreach(KeyValuePair<int, EGameInput> item in this.keyMap)
+			{
+				int keyCode = item.Key;
+				if( (int)KeyCode.Mouse0 > keyCode && keyCode > (int)KeyCode.Mouse6 ){
+					continue;
+				}
+				this.keyMap[keyCode] = item.Value;
+			}
+		}
+
+		public void UpdateInput(ref GameInput gameInput)
 		{
 			// Cursor
 			gameInput.UpdateCursorPos(this.mouse.GetPos());
 			gameInput.UpdateCursorMoving(this.mouse.GetMoving());
 
-			KeyCode[] keyPairs = keyConfigData.KeyPairs;
-			for(int i = 0 ; i < (int)EGameInput.MAX ; i++)
+			// Button
+			foreach(KeyValuePair<int, EGameInput> item in this.keyMap)
 			{
-				KeyCode keyCode = keyPairs[i];
-				if( KeyCode.Mouse0 > keyCode && keyCode > KeyCode.Mouse6 ){
-					continue;
-				}
-				// mouse
-				EButtonState buttonState = mouse.GetButtonState(keyCode);
-				gameInput.UpdateButtonState((EGameInput)i, buttonState);
+				KeyCode keyCode = (KeyCode)item.Key;
+				EButtonState keyState = this.mouse.GetButtonState(keyCode);
+				gameInput.UpdateButtonState(item.Value, keyState);
 			}
-
 		}
 		
 	}

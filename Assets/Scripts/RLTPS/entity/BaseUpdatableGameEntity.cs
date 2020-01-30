@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Control;
+using RLTPS.View;
 using RLTPS.View.Stage;
 
-namespace RLTPS.View.Entity
+namespace RLTPS.Entity
 {
 	/// <summary>
 	/// 

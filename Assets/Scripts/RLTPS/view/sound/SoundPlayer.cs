@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace RLTPS.View
+namespace RLTPS.View.Sound
 {
 
 	/// <summary>
