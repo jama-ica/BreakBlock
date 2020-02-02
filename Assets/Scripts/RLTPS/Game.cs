@@ -6,8 +6,9 @@ using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.Resource;
 using RLTPS.Scene;
-using RLTPS.View.Stage;
 using RLTPS.View;
+using RLTPS.View.Stage;
+using RLTPS.Entity;
 
 namespace RLTPS
 {
@@ -22,6 +23,7 @@ namespace RLTPS
 		ViewManager viewMng;
 		Controller controller;
 		SceneManager sceneManager;
+		GameEntityManager entityMng;
 		
 		// Constructor
 		public Game()
@@ -31,8 +33,9 @@ namespace RLTPS
 			this.controller = new Controller(this.model, this.resourceMng);
 			this.viewMng = new ViewManager(this.controller, this.resourceMng);
 			this.sceneManager = new SceneManager(this.controller, this.viewMng, this.resourceMng);
+			this.entityMng = new GameEntityManager(this.controller, this.viewMng);
 			//
-			this.controller.Init(this.viewMng.GameEntityMng);
+			this.controller.Init(this.entityMng);
 		}
 
 		public void Start()

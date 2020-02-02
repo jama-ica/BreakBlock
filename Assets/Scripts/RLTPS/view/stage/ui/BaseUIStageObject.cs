@@ -9,7 +9,7 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class BaseUIStageObject : BaseStageObject
+	public abstract class BaseUIStageObject : StageObject
 	{
 		
 		// Constructor

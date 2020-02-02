@@ -12,17 +12,15 @@ namespace RLTPS.Model
 	public partial class GameModel // for Bar
 	{
 		
+		public BarModel Bar { get; private set; }
 
 		public BarModel CreateBar()
 		{
-			//TODO
-			return new BarModel();
+			if(this.Bar == null){
+				this.Bar = new BarModel();
+			}
+			return this.Bar;
 		}
-
-		// public float GetBarSpeed()
-		// {
-		// 	return this.GameData.BarData.Speed;
-		// }
 
 	}
 }

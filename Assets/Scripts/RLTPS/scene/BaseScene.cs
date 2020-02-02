@@ -31,24 +31,24 @@ namespace RLTPS.Scene
 		}
 
 		protected readonly Controller controller;
+		protected readonly GameEntityManager GameEntityMng;
 		protected readonly InputManager InputMng;
 
 		protected readonly ResourceManager resourceMng;
 		protected readonly Subject<EScene> sbjChangeScene;
 		//--
 		EStep currentStep;
-		GameEntityManager GameEntityMng;
 
 		// Constructor
 		public BaseScene(Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)
 		{
 			this.controller = controller;
+			this.GameEntityMng = viewMng.GameEntityMng;
 			this.InputMng = viewMng.InputMng;
 			this.resourceMng = resourceMng;
 			this.sbjChangeScene = sbjChangeScene;
 			//
 			this.currentStep = EStep.Init;
-			this.GameEntityMng = new GameEntityManager(controller, viewMng);
 		}
 
 		public bool Update()

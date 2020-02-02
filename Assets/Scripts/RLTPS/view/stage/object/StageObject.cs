@@ -8,13 +8,13 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class BaseStageObject
+	public abstract class StageObject
 	{
 		GameObject _gameOjb;
 		public GameObject GameObj { get => _gameOjb; }
 
 		// Constructor
-		public BaseStageObject(GameObject gameObj)
+		public StageObject(GameObject gameObj)
 		{
 			this._gameOjb = gameObj;
 		}

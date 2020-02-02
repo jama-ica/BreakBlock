@@ -47,12 +47,12 @@ namespace RLTPS.Control
 
 		void CreateBall()
 		{
-
+			//TODO
 		}
 
 		void CreateBlocks()
 		{
-
+			//TODO
 		}
 
 	}

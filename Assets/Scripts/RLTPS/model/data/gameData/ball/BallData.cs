@@ -15,13 +15,13 @@ namespace RLTPS.Model
 		// Constructor
 		public BallData()
 		{
+			this.Speed = 0.0f;
 		}
 
 		public void SetSpeed(float speed)
 		{
 			this.Speed = speed;
 		}
-
 
 
 	}

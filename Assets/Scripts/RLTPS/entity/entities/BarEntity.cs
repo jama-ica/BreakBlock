@@ -18,18 +18,20 @@ namespace RLTPS.Entity
 			return new BarEntity(controller, viewMng);
 		}
 
+		BarStageObject stageObj;
+
 
 		// Constructor
 		public BarEntity(Controller controller, ViewManager viewMng)
 			: base(controller, viewMng)
 		{
+			this.stageObj = null;
 		}
 
 		public override void Start()
 		{
-
+			this.stageObj = new BarStageObject();
 		}
-
 		
 		public override void Update()
 		{
@@ -40,7 +42,6 @@ namespace RLTPS.Entity
 				//TODO
 			}
 		}
-
 
 		public override void End()
 		{

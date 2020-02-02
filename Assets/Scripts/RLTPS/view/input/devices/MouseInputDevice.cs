@@ -25,7 +25,7 @@ namespace RLTPS.View.Input
 		public void InitKeyConfig(KeyConfigData keyConfigData)
 		{
 			this.keyMap.Clear();
-			foreach(KeyValuePair<int, EGameInput> item in this.keyMap)
+			foreach(KeyValuePair<int, EGameInput> item in keyConfigData.KeyMap)
 			{
 				int keyCode = item.Key;
 				if( (int)KeyCode.Mouse0 > keyCode && keyCode > (int)KeyCode.Mouse6 ){

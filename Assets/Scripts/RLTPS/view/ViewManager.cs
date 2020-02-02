@@ -28,6 +28,7 @@ namespace RLTPS.View
 		public EffectPlayer EffectPlayer { get; }
 		public DeviceManager deviceMng { get; }
 		public InputManager InputMng { get; }
+		public GameEntityManager GameEntityMng { get; }
 
 		// Constructor
 		public ViewManager(Controller controller, ResourceManager resourceMng)
@@ -41,6 +42,7 @@ namespace RLTPS.View
 			this.EffectPlayer = new EffectPlayer();
 			this.deviceMng = new DeviceManager();
 			this.InputMng = new InputManager(deviceMng);
+			this.GameEntityMng = new GameEntityManager(controller, this);
 		}
 
 

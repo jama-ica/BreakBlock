@@ -1,20 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.Assertions;
 
-namespace RLTPS.View.Sound
+namespace RLTPS.View.Stage
 {
-
 	/// <summary>
 	/// 
 	/// </summary>
-	public class SoundPlayer
+	public class BarStageObject : StageObject
 	{
 		
 		// Constructor
-		public SoundPlayer()
+		public BarStageObject()
 		{
 		}
 
