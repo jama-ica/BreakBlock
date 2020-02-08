@@ -8,6 +8,7 @@ using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.View.Stage;
 using RLTPS.View;
+using RLTPS.View.Entity;
 
 namespace RLTPS.Scene
 {
@@ -19,8 +20,8 @@ namespace RLTPS.Scene
 	{
 		
 		// Constructor
-		public InitScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceManager, viewManager, sbjChangeScene)
+		public InitScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
+			: base(controller, resourceManager, viewManager, entityManager, sbjChangeScene)
 		{
 		}
 

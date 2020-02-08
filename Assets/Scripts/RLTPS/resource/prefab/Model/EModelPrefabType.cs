@@ -17,7 +17,7 @@ namespace RLTPS.Resource
 	{
 		static readonly UtilPairs<string> PathPairs = new UtilPairs<string>(
 			new (int key, string val)[]{
-				((int)EModelPrefabType.Bar, "Prefabs/Model/Bar"),
+				((int)EModelPrefabType.Bar, "Prefabs/3D/Bar"),
 			}
 		);
 

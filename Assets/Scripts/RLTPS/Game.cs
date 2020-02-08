@@ -43,8 +43,7 @@ namespace RLTPS
 			this.entityManager = new EntityManager();
 			this.viewCommandProcessor = new ViewCommandProcessor(this.controller, this.resourceManager, this.viewManager, this.entityManager);
 
-			SceneFactory sceneFactory = new SceneFactory(controller, viewManager, resourceManager);
-			this.sceneManager = new SceneManager(sceneFactory);
+			this.sceneManager = SceneManagerFactory.Create(this.controller, this.viewManager, this.resourceManager, this.entityManager);
 
 			// Init
 			this.controller.Init(this.viewCommandProcessor);

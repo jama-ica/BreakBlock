@@ -17,13 +17,17 @@ namespace RLTPS.View.Entity
 	{
 
 		BarStageObject barObj;
-		GameInput currentInput;
+		//--
+		readonly GameStage stage;
+		readonly GameInput currentInput;
 
 		// Constructor
 		public BarEntity(Controller controller, ResourceManager resourceManager, ViewManager viewManager)
 			: base(controller, resourceManager, viewManager)
 		{
 			this.barObj = new BarStageObject(resourceManager.Model);
+			//--
+			this.stage = viewManager.Stage;
 			this.currentInput = viewManager.InputManager.CurrentInput;
 		}
 
@@ -34,6 +38,7 @@ namespace RLTPS.View.Entity
 		public override void Start()
 		{
 			this.barObj.Load();
+			this.stage.Stage(barObj);
 		}
 		
 		public override void Update()
@@ -42,9 +47,11 @@ namespace RLTPS.View.Entity
 				return;
 			}
 			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
+				Debug.Log("left");
 				//TODO
 			}
 			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
+				Debug.Log("right");
 				//TODO
 			}
 		}

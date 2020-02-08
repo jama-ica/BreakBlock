@@ -23,7 +23,7 @@ namespace RLTPS.Scene
 		protected readonly Subject<EScene> sbjChangeScene;
 
 		// Constructor
-		public BaseScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
+		public BaseScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
 		{
 			this.sbjChangeScene = sbjChangeScene;
 		}
@@ -38,8 +38,6 @@ namespace RLTPS.Scene
 		public abstract void Start();
 
 		public abstract bool Update();
-		// this.InputManager.Update();
-		// this.EntityManager.Update();
 
 		public abstract void EndStart();
 

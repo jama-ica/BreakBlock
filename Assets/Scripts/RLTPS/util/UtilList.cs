@@ -44,7 +44,7 @@ namespace RLTPS.Util
 		public void Add(UtilList<T> list)
 		{
 			T[] ls = list.List;
-			for(int i = 0, size = ls.Length ; i < size ; i++)
+			for(int i = 0, size = list.Size; i < size ; i++)
 			{
 				Add(ls[i]);
 			}

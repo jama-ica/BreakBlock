@@ -8,6 +8,8 @@ using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.View.Stage;
 using RLTPS.View;
+using RLTPS.View.Entity;
+using RLTPS.View.Input;
 
 namespace RLTPS.Scene
 {
@@ -18,12 +20,18 @@ namespace RLTPS.Scene
 	public class GameScene : BaseScene
 	{
 		readonly Controller controller;
+		readonly ResourceManager resourceManager;
+		readonly EntityManager entityManager;
+		readonly InputManager inputManager;
 
 		// Constructor
-		public GameScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceManager, viewManager, sbjChangeScene)
+		public GameScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
+			: base(controller, resourceManager, viewManager, entityManager, sbjChangeScene)
 		{
 			this.controller = controller;
+			this.resourceManager = resourceManager;
+			this.entityManager = entityManager;
+			this.inputManager = viewManager.InputManager;
 		}
 
 		public override void Init()
@@ -33,6 +41,7 @@ namespace RLTPS.Scene
 
 		public override void LoadStart()
 		{
+			resourceManager.Model.Load(EModelPrefabType.Bar);
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 		}
 
@@ -48,7 +57,9 @@ namespace RLTPS.Scene
 
 		public override bool Update()
 		{
-			return false;
+			this.inputManager.Update();
+			this.entityManager.Update();
+			return true;
 		}
 
 		public override void EndStart()

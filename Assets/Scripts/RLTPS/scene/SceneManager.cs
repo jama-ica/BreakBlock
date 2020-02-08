@@ -91,9 +91,9 @@ namespace RLTPS.Scene
 			
 			case EStep.SceneEndUpdate:
 				if( !this.currentScene.EndUpdate() ){
-					this.currentStep = EStep.SceneEndStart;
+					Assert.IsTrue(this.nextSceneType != EScene.MAX);
+					this.currentStep = EStep.ChangeScene;
 				}
-				Assert.IsTrue(this.nextSceneType != EScene.MAX);
 				break;
 
 			default:

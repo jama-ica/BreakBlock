@@ -6,8 +6,8 @@ using UniRx;
 using RLTPS.Resource;
 using RLTPS.Model;
 using RLTPS.Control;
-using RLTPS.View.Stage;
 using RLTPS.View;
+using RLTPS.View.Entity;
 
 namespace RLTPS.Scene
 {
@@ -19,8 +19,8 @@ namespace RLTPS.Scene
 		readonly Controller controller;
 		
 		// Constructor
-		public TitleScene( Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceManager, viewManager, sbjChangeScene)
+		public TitleScene( Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
+			: base(controller, resourceManager, viewManager, entityManager, sbjChangeScene)
 		{
 			this.controller = controller;
 		}

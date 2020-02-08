@@ -44,7 +44,7 @@ namespace RLTPS.View.Entity
 			// Copy from queue
 			if(!this.newObjects.IsEmpty()){
 				EntityObject[] list = this.newObjects.List;
-				for(int i = 0, size = list.Length ; i < size ; i++){
+				for(int i = 0, size = this.newObjects.Size ; i < size ; i++){
 					list[i].Start();
 					this.objects.Add(list[i]);
 				}
@@ -52,7 +52,7 @@ namespace RLTPS.View.Entity
 			}
 			if(!this.newBbehaviors.IsEmpty()){
 				EntityBehavior[] list = this.newBbehaviors.List;
-				for(int i = 0, size = list.Length ; i < size ; i++){
+				for(int i = 0, size = this.newBbehaviors.Size ; i < size ; i++){
 					list[i].Start();
 					this.behaviors.Add(list[i]);
 				}
