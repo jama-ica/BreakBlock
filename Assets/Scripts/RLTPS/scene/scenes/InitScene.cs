@@ -19,26 +19,43 @@ namespace RLTPS.Scene
 	{
 		
 		// Constructor
-		public InitScene(Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceMng, viewMng, sbjChangeScene)
+		public InitScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
+			: base(controller, resourceManager, viewManager, sbjChangeScene)
 		{
 		}
 
-		protected override bool Load()
+		public override void Init()
+		{
+
+		}
+
+		public override void LoadStart()
 		{
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+		}
+
+		public override bool LoadUpdate()
+		{
+			return false;
+		}
+		
+		public override void Start()
+		{
+			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+		}
+
+		public override bool Update()
+		{
+			ChangeSceneTo(EScene.Title);
 			return false;
 		}
 
-		protected override void Start()
+		public override void EndStart()
 		{
-			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 		}
-		
 
-		protected override bool End()
+		public override bool EndUpdate()
 		{
-			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 			return false;
 		}
 

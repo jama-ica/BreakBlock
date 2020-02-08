@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Model;
+using RLTPS.Device;
 
 namespace RLTPS.View.Input
 {
@@ -74,7 +75,6 @@ namespace RLTPS.View.Input
 		{
 			this.cursorMoving = moving;
 		}
-
 		
 	}
 }

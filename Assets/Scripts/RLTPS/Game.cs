@@ -6,9 +6,11 @@ using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.Resource;
 using RLTPS.Scene;
-using RLTPS.View;
+using RLTPS.View.Entity;
 using RLTPS.View.Stage;
-using RLTPS.Entity;
+using RLTPS.View;
+using RLTPS.Device;
+using RLTPS.View.Command;
 
 namespace RLTPS
 {
@@ -19,23 +21,33 @@ namespace RLTPS
 	public class Game : MonoBehaviour
 	{
 		GameModel model;
-		ResourceManager resourceMng;
-		ViewManager viewMng;
+		DeviceManager deviceManager;
+		ResourceManager resourceManager;
 		Controller controller;
+		// view
+		ViewManager viewManager;
+		EntityManager entityManager;
+		ViewCommandProcessor viewCommandProcessor;
+		// scene
 		SceneManager sceneManager;
-		GameEntityManager entityMng;
 		
 		// Constructor
 		public Game()
 		{
 			this.model = new GameModel();
-			this.resourceMng = new ResourceManager();
-			this.controller = new Controller(this.model, this.resourceMng);
-			this.viewMng = new ViewManager(this.controller, this.resourceMng);
-			this.sceneManager = new SceneManager(this.controller, this.viewMng, this.resourceMng);
-			this.entityMng = new GameEntityManager(this.controller, this.viewMng);
-			//
-			this.controller.Init(this.entityMng);
+			this.deviceManager = new DeviceManager();
+			this.resourceManager = new ResourceManager();
+			this.controller = new Controller(this.model, this.resourceManager);
+
+			this.viewManager = new ViewManager(this.deviceManager);
+			this.entityManager = new EntityManager();
+			this.viewCommandProcessor = new ViewCommandProcessor(this.controller, this.resourceManager, this.viewManager, this.entityManager);
+
+			SceneFactory sceneFactory = new SceneFactory(controller, viewManager, resourceManager);
+			this.sceneManager = new SceneManager(sceneFactory);
+
+			// Init
+			this.controller.Init(this.viewCommandProcessor);
 		}
 
 		public void Start()

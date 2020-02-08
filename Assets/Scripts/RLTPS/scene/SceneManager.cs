@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UniRx;
-using RLTPS.Model;
-using RLTPS.Control;
-using RLTPS.View.Stage;
-using RLTPS.View;
-using RLTPS.Resource;
 
 namespace RLTPS.Scene
 {
@@ -19,63 +14,88 @@ namespace RLTPS.Scene
 	{
 		enum EStep
 		{
-			WaitingForFinish,
-			CreateNewScene,
-			UpdateScene,
+			ChangeScene,
+			SceneInit,
+			SceneLoadStart,
+			SceneLoadUpdate,
+			SceneStart,
+			SceneUpdate,
+			SceneEndStart,
+			SceneEndUpdate,
 			//--
 			MAX
 		}
 
-		readonly Controller controller;
-		//--
-		Subject<EScene> sbjChangeScene;
-		//--
-		SceneFactory sceneFactory;
 		EStep currentStep;
 		BaseScene currentScene;
 		EScene nextSceneType;
+		ScenePool scenePool;
 
 		
 		// Constructor
-		public SceneManager(Controller controller, ViewManager viewMng, ResourceManager resourceMng)
+		public SceneManager(SceneFactory sceneFactory)
 		{
-			this.controller = controller;
-			//--
-			this.sbjChangeScene = new Subject<EScene>();
-			this.sceneFactory = new SceneFactory(controller, resourceMng, viewMng, sbjChangeScene);
 			this.currentStep = EStep.MAX;
 			this.currentScene = null;
 			this.nextSceneType = EScene.MAX;
-			//--
-			this.sbjChangeScene.Subscribe(nextSceneType => {
-				Debug.Log("subscribe");
-				ChangeSceneTo(nextSceneType);
-			});
+			this.scenePool = CreateScenePool(sceneFactory);
 		}
 
 		public void Start()
 		{
-			ChangeSceneTo(EScene.Init);
+			this.nextSceneType = EScene.Init;
+			this.currentStep = EStep.ChangeScene;
 		}
 
 		public void Update()
 		{
 			switch(this.currentStep)
 			{
-			case EStep.WaitingForFinish:
-				if(!this.currentScene.Update()){
-					this.currentScene = null;
-					this.currentStep = EStep.CreateNewScene;
+			case EStep.ChangeScene:
+				this.currentScene = this.scenePool.GetScene(this.nextSceneType);
+				this.nextSceneType = EScene.MAX;
+				this.currentStep = EStep.SceneInit;
+				break;
+
+			case EStep.SceneInit:
+				this.currentScene.Init();
+				this.currentStep = EStep.SceneLoadStart;
+				break;
+
+			case EStep.SceneLoadStart:
+				this.currentScene.LoadStart();
+				this.currentStep = EStep.SceneLoadUpdate;
+				break;
+			
+			case EStep.SceneLoadUpdate:
+				if( !this.currentScene.LoadUpdate() ){
+					this.currentStep = EStep.SceneStart;
 				}
 				break;
-			case EStep.CreateNewScene:
-				CreateNewScene(this.nextSceneType);
-				this.nextSceneType = EScene.MAX;
-				this.currentStep = EStep.UpdateScene;
+			
+			case EStep.SceneStart:
+				this.currentScene.Start();
+				this.currentStep = EStep.SceneUpdate;
 				break;
-			case EStep.UpdateScene:
-				this.currentScene.Update();
+			
+			case EStep.SceneUpdate:
+				if( !this.currentScene.Update() ){
+					this.currentStep = EStep.SceneEndStart;
+				}
 				break;
+			
+			case EStep.SceneEndStart:
+				this.currentScene.EndStart();
+				this.currentStep = EStep.SceneEndUpdate;
+				break;
+			
+			case EStep.SceneEndUpdate:
+				if( !this.currentScene.EndUpdate() ){
+					this.currentStep = EStep.SceneEndStart;
+				}
+				Assert.IsTrue(this.nextSceneType != EScene.MAX);
+				break;
+
 			default:
 				Debug.LogWarning("!step = " + this.currentStep);
 				break;
@@ -83,32 +103,29 @@ namespace RLTPS.Scene
 
 		}
 
+		ScenePool CreateScenePool(SceneFactory sceneFactory)
+		{
+			Subject<EScene> sbjChangeScene = new Subject<EScene>();
+			IDisposable disposable = sbjChangeScene.Subscribe(nextSceneType => {
+				Debug.Log("subscribe");
+				ChangeSceneTo(nextSceneType);
+			});
+
+			ScenePool scenePool = new ScenePool();
+			for(int i = 0, size = (int)EScene.MAX ; i < size ; i++){
+				EScene type = (EScene)i;
+				BaseScene scene = sceneFactory.CreateScene(type, sbjChangeScene);
+				scenePool.SetScene(type, scene);
+			}
+			return scenePool;
+		}
+
 		void ChangeSceneTo(EScene nextSceneType)
 		{
 			this.nextSceneType = nextSceneType;
-			if(this.currentScene is null){
-				this.currentStep = EStep.CreateNewScene;
-				return;
-			}
-			StartFrinishCurrentScene();
-			this.currentStep = EStep.WaitingForFinish;
+			this.currentStep = EStep.ChangeScene;
 		}
 
-		void StartFrinishCurrentScene()
-		{
-			if(this.currentScene != null){
-				this.currentScene.Finish();
-			}
-		}
-
-		void CreateNewScene(EScene type)
-		{
-			Assert.IsTrue(this.currentScene is null);
-			this.currentScene = this.sceneFactory.CreateScene(type);
-		}
-
-
-		
 		
 	}
 }

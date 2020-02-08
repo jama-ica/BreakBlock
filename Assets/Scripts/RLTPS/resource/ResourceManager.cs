@@ -10,16 +10,18 @@ namespace RLTPS.Resource
 	/// </summary>
 	public class ResourceManager
 	{
-		public ConfigDataResourceManager ConfigData { get; }
-		public MasterDataResourceManager MasterData { get; }
-		public SaveDataResourceManager SaveData { get; }
+		public ConfigDataResource ConfigData { get; }
+		public MasterDataResource MasterData { get; }
+		public SaveDataResource SaveData { get; }
 
-		public UIPrefabResourceManager UI { get; }
+		public UIPrefabResource UI { get; }
+		public ModelPrefabResource Model { get; }
 		
 		// Constructor
 		public ResourceManager()
 		{
-			this.UI = new UIPrefabResourceManager();
+			this.UI = new UIPrefabResource();
+			this.Model = new ModelPrefabResource();
 		}
 
 		

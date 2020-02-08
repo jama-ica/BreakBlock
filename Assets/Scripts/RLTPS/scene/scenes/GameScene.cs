@@ -17,28 +17,47 @@ namespace RLTPS.Scene
 	/// </summary>
 	public class GameScene : BaseScene
 	{
-		
+		readonly Controller controller;
+
 		// Constructor
-		public GameScene(Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceMng, viewMng, sbjChangeScene)
+		public GameScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, Subject<EScene> sbjChangeScene)
+			: base(controller, resourceManager, viewManager, sbjChangeScene)
 		{
+			this.controller = controller;
 		}
 
-		protected override bool Load()
+		public override void Init()
+		{
+
+		}
+
+		public override void LoadStart()
 		{
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+		}
+
+		public override bool LoadUpdate()
+		{
 			return false;
 		}
 
-		protected override void Start()
+		public override void Start()
 		{
 			this.controller.StartStage();
 		}
 
-		protected override bool End()
+		public override bool Update()
 		{
 			return false;
 		}
-		
+
+		public override void EndStart()
+		{
+		}
+
+		public override bool EndUpdate()
+		{
+			return false;
+		}
 	}
 }

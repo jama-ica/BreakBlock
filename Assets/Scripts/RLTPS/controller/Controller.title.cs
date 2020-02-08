@@ -16,7 +16,7 @@ namespace RLTPS.Control
 
 		public void StartTitle()
 		{
-			this.viewCommand.CreateTitle();
+			this.viewCommandSender.CreateTitle();
 		}
 
 

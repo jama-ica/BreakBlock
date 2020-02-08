@@ -6,12 +6,12 @@ using UnityEngine.Assertions;
 namespace RLTPS.Util
 {
 	/// <summary>
-	/// 
+	/// This UtilArray keeps order of items in the array.
 	/// </summary>
 	public class UtilArray<T> where T : class
 	{
 		
-		readonly T[] buf;
+		T[] buf;
 		int head;
 		int size;
 

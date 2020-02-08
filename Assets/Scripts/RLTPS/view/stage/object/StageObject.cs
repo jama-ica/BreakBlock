@@ -10,24 +10,27 @@ namespace RLTPS.View.Stage
 	/// </summary>
 	public abstract class StageObject
 	{
-		GameObject _gameOjb;
-		public GameObject GameObj { get => _gameOjb; }
+		public GameObject GameObj { get; protected set; }
 
 		// Constructor
-		public StageObject(GameObject gameObj)
+		public StageObject()
 		{
-			this._gameOjb = gameObj;
+			this.GameObj = null;
 		}
+
+		public void PreLoad()
+		{
+			Load();
+		}
+
+		public abstract GameObject Load();
+
+		public virtual void Start(){}
 
 		public void SetGameObj(GameObject gameObj)
 		{
-			this._gameOjb = gameObj;
+			this.GameObj = gameObj;
 		}
-
-		// Function start will be called when the instance is staged
-		public abstract void Start();
-
-		public abstract bool Update();
 
 	}
 }

@@ -15,20 +15,20 @@ namespace RLTPS.Control
 	public partial class Controller
 	{
 		readonly GameModel GameModel;
-		readonly ResourceManager resourceMng;
-		IViewCommand viewCommand;
+		readonly ResourceManager resourceManager;
+		IViewCommandSender viewCommandSender;
 
 		// Constructor
-		public Controller(GameModel GameModel, ResourceManager resourceMng)
+		public Controller(GameModel GameModel, ResourceManager resourceManager)
 		{
 			this.GameModel = GameModel;
-			this.resourceMng = resourceMng;
-			this.viewCommand = null;
+			this.resourceManager = resourceManager;
+			this.viewCommandSender = null;
 		}
 
-		public void Init(IViewCommand viewCommand)
+		public void Init(IViewCommandSender viewCommandSender)
 		{
-			this.viewCommand = viewCommand;
+			this.viewCommandSender = viewCommandSender;
 		}
 		
 		// /*

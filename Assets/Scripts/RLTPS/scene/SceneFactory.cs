@@ -18,26 +18,24 @@ namespace RLTPS.Scene
 	public class SceneFactory
 	{
 		readonly Controller controller;
-		readonly ResourceManager resourceMng;
-		readonly ViewManager viewMng;
-		readonly UniRx.Subject<EScene> sbjChangeScene;
+		readonly ViewManager viewManager;
+		readonly ResourceManager resourceManager;
 
 		// Constructor
-		public SceneFactory(Controller controller, ResourceManager resourceMng, ViewManager viewMng, Subject<EScene> sbjChangeScene)
+		public SceneFactory(Controller controller, ViewManager viewManager, ResourceManager resourceManager)
 		{
 			this.controller = controller;
-			this.resourceMng = resourceMng;
-			this.viewMng = viewMng;
-			this.sbjChangeScene = sbjChangeScene;
+			this.viewManager = viewManager;
+			this.resourceManager = resourceManager;
 		}
 
-		public BaseScene CreateScene(EScene type)
+		public BaseScene CreateScene(EScene type, UniRx.Subject<EScene> sbjChangeScene)
 		{
 			switch(type)
 			{
-			case EScene.Init: return new InitScene(this.controller, this.resourceMng, this.viewMng, this.sbjChangeScene);
-			case EScene.Title: return new TitleScene(this.controller, this.resourceMng, this.viewMng, this.sbjChangeScene);
-			case EScene.Game: return new GameScene(this.controller, this.resourceMng, this.viewMng, this.sbjChangeScene);
+			case EScene.Init: return new InitScene(this.controller, this.resourceManager, this.viewManager, sbjChangeScene);
+			case EScene.Title: return new TitleScene(this.controller, this.resourceManager, this.viewManager, sbjChangeScene);
+			case EScene.Game: return new GameScene(this.controller, this.resourceManager, this.viewManager, sbjChangeScene);
 			default:
 				break;
 			}
@@ -45,7 +43,6 @@ namespace RLTPS.Scene
 			return null;
 		}
 
-		
 		
 	}
 }

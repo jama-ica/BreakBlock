@@ -12,25 +12,29 @@ namespace RLTPS.View.Stage
 	public class GameStage
 	{
 		//StageCamera camera;
-		UtilArray<BaseUIStageObject> uiObjs;
+		UtilList<BaseUIStageObject> uiObjs;
+		UtilList<StageObject> modelObjs;
 		
 		// Constructor
 		public GameStage()
 		{
-			this.uiObjs = new UtilArray<BaseUIStageObject>(100);
+			this.uiObjs = new UtilList<BaseUIStageObject>(100);
+			this.modelObjs = new UtilList<StageObject>(100);
 		}
 
 		public void ClearAll()
 		{
 			this.uiObjs.Clear();
+			this.modelObjs.Clear();
 		}
 
-		public EUIID Stage(BaseUIStageObject stageObj)
+		public void Stage(StageObject stageObj)
 		{
-			GameObject newGameObj = GameObject.Instantiate(stageObj.GameObj, new Vector3(0, 0, 0), Quaternion.identity);
+			GameObject gameObj = stageObj.Load();
+			GameObject newGameObj = GameObject.Instantiate(gameObj, new Vector3(0, 0, 0), Quaternion.identity);
 			stageObj.SetGameObj(newGameObj);
 			stageObj.Start();
-			return (EUIID)this.uiObjs.Add(stageObj);
+			this.modelObjs.Add(stageObj);
 		}
 
 		public BaseUIStageObject GetUIStageObject(EUIID id)
