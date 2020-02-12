@@ -10,12 +10,10 @@ namespace RLTPS.Model
 	/// </summary>
 	public class BallModel
 	{
-		public BallData Data { get; }
 
 		// Constructor
 		public BallModel()
 		{
-			this.Data = new BallData();
 		}
 
 		// public override void LoadFromMasterData(MasterData masterData)

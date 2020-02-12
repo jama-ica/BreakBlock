@@ -9,17 +9,64 @@ namespace RLTPS.Model
 	/// <summary>
 	/// 
 	/// </summary>
-	public partial class GameModel
+	public class GameModel
 	{
-		public GameData GameData { get; }
+		BallModel _ball;
+		BarModel _bar;
+		BlockModels _blocks;
 
-		
 		// Constructor
 		public GameModel()
 		{
 		}
 
-		
-		
+
+		// ----------------------------------------------------
+		// Ball
+		// ----------------------------------------------------
+		public BallModel CreateBall(/* masterData */)
+		{
+			if(this._ball == null){
+				this._ball = new BallModel();
+			}
+			return this._ball;
+		}
+
+		public BallModel Ball{ get{ return this._ball; } }
+
+
+		// ----------------------------------------------------
+		// Bar
+		// ----------------------------------------------------
+		public BarModel CreateBar(/* masterData */)
+		{
+			if(this._bar == null){
+				this._bar = new BarModel();
+			}
+			return this._bar;
+		}
+
+		public BarModel Bar{ get{ return this._bar; } }
+
+
+		// ----------------------------------------------------
+		// Block
+		// ----------------------------------------------------
+
+		public BlockModels CreateBlocks(/* masterData */)
+		{
+			//TODO
+			if(this._blocks == null){
+				this._blocks = new BlockModels();
+			}
+			return this._blocks;
+		}
+
+		public BlockModel GetBlock(EBlockID id)
+		{
+			return this._blocks.GetBlock(id);
+		}
+
+
 	}
 }

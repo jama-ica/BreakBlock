@@ -14,14 +14,14 @@ namespace RLTPS.Control
 	/// </summary>
 	public partial class Controller
 	{
-		readonly GameModel GameModel;
+		readonly GameModel gameModel;
 		readonly ResourceManager resourceManager;
 		IViewCommandSender viewCommandSender;
 
 		// Constructor
-		public Controller(GameModel GameModel, ResourceManager resourceManager)
+		public Controller(GameModel gameModel, ResourceManager resourceManager)
 		{
-			this.GameModel = GameModel;
+			this.gameModel = gameModel;
 			this.resourceManager = resourceManager;
 			this.viewCommandSender = null;
 		}

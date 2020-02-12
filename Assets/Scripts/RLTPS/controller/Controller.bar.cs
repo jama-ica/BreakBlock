@@ -15,7 +15,7 @@ namespace RLTPS.Control
 	{
 		void CreateBar()
 		{
-			BarModel bar = this.GameModel.CreateBar();
+			BarModel bar = this.gameModel.CreateBar();
 			this.viewCommandSender.CreateBar(bar);
 		}
 	}
