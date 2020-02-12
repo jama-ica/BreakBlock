@@ -15,11 +15,11 @@ namespace RLTPS.Resource
 	public class SaveDataResource
 	{
 		
-		static readonly string SaveDirectory = $"{Application.dataPath}/Data";
+	 	string SaveDirectory { get { return $"{Application.dataPath}/Data"; } }
 
-		static readonly string SaveFileName = "save.dat";
+		string SaveFileName { get { return "save.dat"; } }
 
-		static readonly string SaveFilePath = $"{SaveDataResource.SaveDirectory}/{SaveDataResource.SaveFileName}";
+		string SaveFilePath { get { return $"{this.SaveDirectory}/{this.SaveFileName}"; } }
 		
 
 		// Constructor
@@ -31,7 +31,7 @@ namespace RLTPS.Resource
 		{
 			SaveData saveData = null;
 			try {
-				var filePath = SaveDataResource.SaveFilePath;
+				var filePath = this.SaveFilePath;
 				using (var fs = new FileStream (filePath, FileMode.Open, FileAccess.Read)) {
 					byte[] bytes = new byte[fs.Length];
 					fs.Read (bytes, 0, bytes.Length);
@@ -45,11 +45,11 @@ namespace RLTPS.Resource
 
 		public bool Save(SaveData saveData)
 		{
-			Directory.CreateDirectory(SaveDataResource.SaveDirectory);
+			Directory.CreateDirectory(this.SaveDirectory);
 
 			var bytes = MessagePackSerializer.Serialize (saveData);
 
-			var filePath = SaveDataResource.SaveFilePath;
+			var filePath = this.SaveFilePath;
 			using (var fs = new FileStream(filePath, FileMode.Create)) {
 				fs.Write (bytes, 0, bytes.Length);
 			}

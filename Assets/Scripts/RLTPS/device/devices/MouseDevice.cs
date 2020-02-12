@@ -37,7 +37,7 @@ namespace RLTPS.Device
 
 		public EButtonState GetButtonState(KeyCode keyCode)
 		{
-			Assert.IsTrue(KeyCode.Mouse0 <= keyCode && keyCode <= KeyCode.Mouse6);
+			Assert.IsTrue(KeyCode.Mouse0 <= keyCode && keyCode <= KeyCode.Mouse6, $"keyCode = {keyCode}");
 
 			if(UnityEngine.Input.GetKeyDown(keyCode))
 			{

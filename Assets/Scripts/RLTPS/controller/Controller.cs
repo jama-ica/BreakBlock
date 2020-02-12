@@ -30,6 +30,17 @@ namespace RLTPS.Control
 		{
 			this.viewCommandSender = viewCommandSender;
 		}
+
+		public void InitLoad()
+		{
+			// config
+			var configData = this.resourceManager.ConfigData.Load();
+			gameModel.SetConfigData(configData);
+			this.viewCommandSender.InitKeyConfig(configData.KeyData);//TODO
+
+			this.resourceManager.MasterData.Load();
+			this.resourceManager.SaveData.Load();
+		}
 		
 		// /*
 		// 	Created Event

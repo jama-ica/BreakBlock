@@ -11,9 +11,10 @@ namespace RLTPS.Model
 	/// </summary>
 	public class GameModel
 	{
-		BallModel _ball;
-		BarModel _bar;
-		BlockModels _blocks;
+		BallModel _ball = null;
+		BarModel _bar = null;
+		BlockModels _blocks = null;
+		ConfigData _configData = null;
 
 		// Constructor
 		public GameModel()
@@ -67,6 +68,14 @@ namespace RLTPS.Model
 			return this._blocks.GetBlock(id);
 		}
 
+		// ----------------------------------------------------
+		// Config Data
+		// ----------------------------------------------------
+		public void SetConfigData(ConfigData configData)
+		{
+			Assert.IsNull(this._configData);
+			this._configData = configData;
+		}
 
 	}
 }

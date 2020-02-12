@@ -38,6 +38,7 @@ namespace RLTPS.View.Input
 
 		public void UpdateInput(ref GameInput gameInput)
 		{
+			Assert.IsTrue(this.keyMap.Length > 0);
 			for(int i = 0 ; i < this.keyMap.Length ; i++)
 			{
 				EButtonState keyState = this.keyboard.GetKeyState(this.keyMap[i].keyCode);

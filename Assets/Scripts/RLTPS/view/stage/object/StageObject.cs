@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.Model;
 
 namespace RLTPS.View.Stage
 {
@@ -10,13 +11,15 @@ namespace RLTPS.View.Stage
 	/// </summary>
 	public abstract class StageObject
 	{
-		public GameObject GameObj { get; protected set; }
+		GameObject _gameObj;
 
 		// Constructor
 		public StageObject()
 		{
-			this.GameObj = null;
+			this._gameObj = null;
 		}
+
+		public GameObject GameObj { get{ return this._gameObj; } }
 
 		public void PreLoad()
 		{
@@ -29,7 +32,57 @@ namespace RLTPS.View.Stage
 
 		public void SetGameObj(GameObject gameObj)
 		{
-			this.GameObj = gameObj;
+			this._gameObj = gameObj;
+		}
+
+		//TODO
+		public void move(EDir dir, float val)
+		{
+			switch (dir)
+			{
+			case EDir.FORWARD:
+				this._gameObj.transform.Translate(Vector3.forward * val);
+				break;
+			case EDir.FORWARD_RIGHT:
+				this._gameObj.transform.Translate(Vector3.forward * val);
+				this._gameObj.transform.Translate(Vector3.right * val);
+				break;
+			case EDir.RIGHT:
+				this._gameObj.transform.Translate(Vector3.right * val);
+				break;
+			case EDir.BACK_RIGHT:
+				this._gameObj.transform.Translate(Vector3.right * val);
+				this._gameObj.transform.Translate(Vector3.back * val);
+				break;
+			case EDir.BACK:
+				this._gameObj.transform.Translate(Vector3.back * val);
+				break;
+			case EDir.BACK_LEFT:
+				this._gameObj.transform.Translate(Vector3.back * val);
+				this._gameObj.transform.Translate(Vector3.left * val);
+				break;
+			case EDir.LEFT:
+				this._gameObj.transform.Translate(Vector3.left * val);
+				break;
+			case EDir.FORWARD_LEFT:
+				this._gameObj.transform.Translate(Vector3.forward * val);
+				this._gameObj.transform.Translate(Vector3.left * val);
+				break;
+			default:
+				Debug.LogWarning("!dir = " + dir);
+				break;
+			}
+		}
+		
+		public void rotate(float x)
+		{
+			if(0.0f == x){
+				return;
+			}
+			this._gameObj.transform.Rotate(0.0f, x, 0.0f, Space.Self);
+			// if(this.gameObj.transform.rotation.x != x){
+			// 	this.gameObj.transform.rotation = Quaternion.Euler(0.0f, x, 0.0f);
+			// }
 		}
 
 	}

@@ -17,7 +17,7 @@ namespace RLTPS.View.Entity
 
 		public EntityBehavior(Controller controller, ResourceManager resourceManager, ViewManager viewManager)
 		{
-			this.Alive = false;
+			this.Alive = true;
 		}
 
 

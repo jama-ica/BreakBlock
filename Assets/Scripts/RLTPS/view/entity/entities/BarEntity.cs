@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Control;
+using RLTPS.Model;
 using RLTPS.View;
 using RLTPS.View.Stage;
 using RLTPS.View.Input;
@@ -48,10 +49,12 @@ namespace RLTPS.View.Entity
 			}
 			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
 				Debug.Log("left");
+				barObj.move(EDir.LEFT, 1.0f);
 				//TODO
 			}
 			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
 				Debug.Log("right");
+				barObj.move(EDir.RIGHT, 1.0f);
 				//TODO
 			}
 		}

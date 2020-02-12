@@ -19,10 +19,13 @@ namespace RLTPS.Scene
 	public class InitScene : BaseScene
 	{
 		
+		readonly Controller controller;
+
 		// Constructor
 		public InitScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
 			: base(controller, resourceManager, viewManager, entityManager, sbjChangeScene)
 		{
+			this.controller = controller;
 		}
 
 		public override void Init()
@@ -32,7 +35,7 @@ namespace RLTPS.Scene
 
 		public override void LoadStart()
 		{
-			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
+			this.controller.InitLoad();
 		}
 
 		public override bool LoadUpdate()

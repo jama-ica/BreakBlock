@@ -25,11 +25,11 @@ namespace RLTPS.View.Input
 		public void InitKeyConfig(KeyConfigData keyConfig)
 		{
 			KeyCode[] keyPairs = keyConfig.KeyPairs;
-			this.keyMap = new (KeyCode keyCode, EGameInput gameInputType)[keyPairs.Length];
+			//TODO this.keyMap = new (KeyCode keyCode, EGameInput gameInputType)[keyPairs.Length];//TODO resize
 
 			for(int i = 0 ; i < keyPairs.Length ; i++){
 				KeyCode keyCode = keyPairs[i];
-				if( KeyCode.Mouse0 > keyCode && keyCode > KeyCode.Mouse6 ){
+				if( KeyCode.Mouse0 > keyCode || keyCode > KeyCode.Mouse6 ){
 					continue;
 				}
 				this.keyMap[i] = (keyCode, (EGameInput)i);

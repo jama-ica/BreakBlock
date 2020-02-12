@@ -20,6 +20,10 @@ namespace RLTPS.Resource
 		// Constructor
 		public ResourceManager()
 		{
+			this.ConfigData = new ConfigDataResource();
+			this.MasterData = new MasterDataResource();
+			this.SaveData = new SaveDataResource();
+
 			this.UI = new UIPrefabResource();
 			this.Model = new ModelPrefabResource();
 		}

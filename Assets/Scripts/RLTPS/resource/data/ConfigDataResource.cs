@@ -15,23 +15,22 @@ namespace RLTPS.Resource
 	public class ConfigDataResource
 	{
 
-		static readonly string ConfigDirectory = $"{Application.dataPath}/Data";
+		string ConfigDirectory { get{ return $"{Application.dataPath}/Data"; } }
 
-		static readonly string ConfigFileName = "config.dat";
+		string ConfigFileName { get { return "config.dat";} }
 
-		static readonly string ConfigFilePath = $"{ConfigDataResource.ConfigDirectory}/{ConfigDataResource.ConfigFileName}";
+		string ConfigFilePath { get { return $"{this.ConfigDirectory}/{this.ConfigFileName}"; } }
 		
 		// Constructor
 		public ConfigDataResource()
 		{
 		}
 
-
 		public ConfigData Load()
 		{
 			ConfigData configData = null;
 			try {
-				var filePath = ConfigDataResource.ConfigFilePath;
+				var filePath = this.ConfigFilePath;
 				using (var fs = new FileStream (filePath, FileMode.Open, FileAccess.Read)) {
 					byte[] bytes = new byte[fs.Length];
 					fs.Read (bytes, 0, bytes.Length);
@@ -45,11 +44,11 @@ namespace RLTPS.Resource
 
 		public bool Save(ConfigData configData)
 		{
-			Directory.CreateDirectory(ConfigDataResource.ConfigFilePath);
+			Directory.CreateDirectory(this.ConfigDirectory);
 
 			var bytes = MessagePackSerializer.Serialize(configData);
 
-			var filePath = ConfigDataResource.ConfigFilePath;
+			var filePath = this.ConfigFilePath;
 			using (var fs = new FileStream(filePath, FileMode.Create)) {
 				fs.Write (bytes, 0, bytes.Length);
 			}
@@ -58,7 +57,6 @@ namespace RLTPS.Resource
 
 		ConfigData CreateNewConfigData()
 		{
-			//TODO
 			return new ConfigData();
 		}
 		

@@ -65,6 +65,10 @@ namespace RLTPS
 			MessagePackSerializer.DefaultOptions = options;
 		}
 
+		public void Awake()
+		{
+		}
+
 		public void Start()
 		{
 
