@@ -77,7 +77,7 @@ namespace RLTPS
 
 			this.sceneManager.Start();
 
-			//TEST
+			//TODO TEST
 			// to create database, use DatabaseBuilder and Append method.
 			var builder = new DatabaseBuilder ();
 			builder.Append (new Person[] {
@@ -130,12 +130,13 @@ namespace RLTPS
 
 		public void Update()
 		{
-			this.sceneManager.Update();
+			this.sceneManager.Update(Time.deltaTime);
 		}
 
-		// public void FixedUpdate()
-		// {
-		// }
+		public void FixedUpdate()
+		{
+			this.sceneManager.FixedUpdate();
+		}
 
 		// public void OnGUI()
 		// {

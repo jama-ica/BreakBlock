@@ -42,10 +42,9 @@ namespace RLTPS.Scene
 		public override void LoadStart()
 		{
 			resourceManager.Model.Load(EModelPrefabType.Bar);
-			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 		}
 
-		public override bool LoadUpdate()
+		public override bool LoadUpdate(float deltaTime)
 		{
 			return false;
 		}
@@ -55,18 +54,23 @@ namespace RLTPS.Scene
 			this.controller.StartStage();
 		}
 
-		public override bool Update()
+		public override bool Update(float deltaTime)
 		{
 			this.inputManager.Update();
 			this.entityManager.Update();
 			return true;
 		}
 
+		public override void FixedUpdate()
+		{
+
+		}
+
 		public override void EndStart()
 		{
 		}
 
-		public override bool EndUpdate()
+		public override bool EndUpdate(float deltaTime)
 		{
 			return false;
 		}

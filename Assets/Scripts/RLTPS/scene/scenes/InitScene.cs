@@ -38,7 +38,7 @@ namespace RLTPS.Scene
 			this.controller.InitLoad();
 		}
 
-		public override bool LoadUpdate()
+		public override bool LoadUpdate(float deltaTime)
 		{
 			return false;
 		}
@@ -48,7 +48,7 @@ namespace RLTPS.Scene
 			Debug.Log("Called: " + this.GetType().Name + " " + System.Reflection.MethodBase.GetCurrentMethod().Name);
 		}
 
-		public override bool Update()
+		public override bool Update(float deltaTime)
 		{
 			ChangeSceneTo(EScene.Title);
 			return false;
@@ -58,7 +58,7 @@ namespace RLTPS.Scene
 		{
 		}
 
-		public override bool EndUpdate()
+		public override bool EndUpdate(float deltaTime)
 		{
 			return false;
 		}

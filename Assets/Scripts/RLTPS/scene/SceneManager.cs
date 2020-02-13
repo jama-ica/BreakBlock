@@ -47,7 +47,7 @@ namespace RLTPS.Scene
 			this.currentStep = EStep.ChangeScene;
 		}
 
-		public void Update()
+		public void Update(float deltaTime)
 		{
 			switch(this.currentStep)
 			{
@@ -68,7 +68,7 @@ namespace RLTPS.Scene
 				break;
 			
 			case EStep.SceneLoadUpdate:
-				if( !this.currentScene.LoadUpdate() ){
+				if( !this.currentScene.LoadUpdate(deltaTime) ){
 					this.currentStep = EStep.SceneStart;
 				}
 				break;
@@ -79,7 +79,7 @@ namespace RLTPS.Scene
 				break;
 			
 			case EStep.SceneUpdate:
-				if( !this.currentScene.Update() ){
+				if( !this.currentScene.Update(deltaTime) ){
 					this.currentStep = EStep.SceneEndStart;
 				}
 				break;
@@ -90,7 +90,7 @@ namespace RLTPS.Scene
 				break;
 			
 			case EStep.SceneEndUpdate:
-				if( !this.currentScene.EndUpdate() ){
+				if( !this.currentScene.EndUpdate(deltaTime) ){
 					Assert.IsTrue(this.nextSceneType != EScene.MAX);
 					this.currentStep = EStep.ChangeScene;
 				}
@@ -101,6 +101,14 @@ namespace RLTPS.Scene
 				break;
 			}
 
+		}
+
+		public void FixedUpdate()
+		{
+			if(this.currentStep != EStep.SceneUpdate){
+				return;
+			}
+			this.currentScene.FixedUpdate();
 		}
 
 		ScenePool CreateScenePool(SceneFactory sceneFactory)

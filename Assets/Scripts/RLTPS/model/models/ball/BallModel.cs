@@ -10,17 +10,16 @@ namespace RLTPS.Model
 	/// </summary>
 	public class BallModel
 	{
+		float _speed;
 
 		// Constructor
-		public BallModel()
+		public BallModel(float speed)
 		{
+			this._speed = speed;
 		}
 
-		// public override void LoadFromMasterData(MasterData masterData)
-		// {
-		// 	this.Data.SetSpeed( masterData.GetBallSpeed() );
-		// }
-
+		public float Speed{ get{ return this._speed; } }
+		
 		
 	}
 }

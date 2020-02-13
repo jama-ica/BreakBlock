@@ -10,16 +10,22 @@ namespace RLTPS.Model
 	/// </summary>
 	public class MasterData
 	{
-		
+		public static MasterData CreateDefault()
+		{
+			//TODO
+			return new MasterData();
+		}
+
 		// Constructor
 		public MasterData()
 		{
 		}
 
-		public float GetBarSpeed()
+		public void CopyFrom(MasterData masterData)
 		{
-			return 0.5f;
+			
 		}
+
 		
 	}
 }

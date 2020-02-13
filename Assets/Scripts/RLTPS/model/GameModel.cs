@@ -21,6 +21,18 @@ namespace RLTPS.Model
 		{
 		}
 
+		// ----------------------------------------------------
+		// Config Data
+		// ----------------------------------------------------
+		public void SetConfigData(ConfigData configData)
+		{
+			if(this._configData == null){
+				this._configData = configData;
+			}
+			else{
+				this._configData.CopyFrom(configData);
+			}
+		}
 
 		// ----------------------------------------------------
 		// Ball
@@ -28,7 +40,7 @@ namespace RLTPS.Model
 		public BallModel CreateBall(/* masterData */)
 		{
 			if(this._ball == null){
-				this._ball = new BallModel();
+				this._ball = new BallModel(.1f);
 			}
 			return this._ball;
 		}
@@ -42,7 +54,7 @@ namespace RLTPS.Model
 		public BarModel CreateBar(/* masterData */)
 		{
 			if(this._bar == null){
-				this._bar = new BarModel();
+				this._bar = new BarModel(0.1f);
 			}
 			return this._bar;
 		}
@@ -58,7 +70,7 @@ namespace RLTPS.Model
 		{
 			//TODO
 			if(this._blocks == null){
-				this._blocks = new BlockModels();
+				this._blocks = new BlockModels(10, 3);
 			}
 			return this._blocks;
 		}
@@ -68,14 +80,6 @@ namespace RLTPS.Model
 			return this._blocks.GetBlock(id);
 		}
 
-		// ----------------------------------------------------
-		// Config Data
-		// ----------------------------------------------------
-		public void SetConfigData(ConfigData configData)
-		{
-			Assert.IsNull(this._configData);
-			this._configData = configData;
-		}
 
 	}
 }

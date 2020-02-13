@@ -33,29 +33,18 @@ namespace RLTPS.Control
 
 		public void InitLoad()
 		{
-			// config
-			var configData = this.resourceManager.ConfigData.Load();
-			gameModel.SetConfigData(configData);
-			this.viewCommandSender.InitKeyConfig(configData.KeyData);//TODO
-
+			// master data
 			this.resourceManager.MasterData.Load();
+
+			// config data
+			var config = this.resourceManager.ConfigData.Load();
+			gameModel.SetConfigData(config);
+			this.viewCommandSender.InitKeyConfig(config.KeyData);
+
+			// save data
 			this.resourceManager.SaveData.Load();
 		}
 		
-		// /*
-		// 	Created Event
-		//  */
-		// Subject<(ECreatedEvent type, IGameComponent component)> createdEvent = new Subject<(ECreatedEvent type, IGameComponent component)>();
-		// public IObservable<(ECreatedEvent type, IGameComponent component)> OnCreated() => this.createdEvent;
-
-		// // Subject<(ECreatedEvent type, UtilArray<IGameComponent> components)> createdArrayEvent = new Subject<(ECreatedEvent type, UtilArray<IGameComponent> components)>();
-		// // public IObservable<(ECreatedEvent type, UtilArray<IGameComponent> components)> OnCreatedArray() => this.createdArrayEvent;
-
-		// void CreateTitle()
-		// {
-		// 	this.createdEvent.OnNext( (ECreatedEvent.Title, null) );
-		// }
-
 		void CreateBall()
 		{
 			//TODO

@@ -48,13 +48,11 @@ namespace RLTPS.View.Entity
 				return;
 			}
 			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
-				Debug.Log("left");
-				barObj.move(EDir.LEFT, 1.0f);
+				barObj.Move(EDir.LEFT, 1.0f);
 				//TODO
 			}
 			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
-				Debug.Log("right");
-				barObj.move(EDir.RIGHT, 1.0f);
+				barObj.Move(EDir.RIGHT, 1.0f);
 				//TODO
 			}
 		}

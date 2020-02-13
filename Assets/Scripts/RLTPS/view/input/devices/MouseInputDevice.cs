@@ -24,16 +24,18 @@ namespace RLTPS.View.Input
 
 		public void InitKeyConfig(KeyConfigData keyConfig)
 		{
+			var list = new List<(KeyCode keyCode, EGameInput gameInputType)>();
 			KeyCode[] keyPairs = keyConfig.KeyPairs;
-			//TODO this.keyMap = new (KeyCode keyCode, EGameInput gameInputType)[keyPairs.Length];//TODO resize
-
+			
 			for(int i = 0 ; i < keyPairs.Length ; i++){
 				KeyCode keyCode = keyPairs[i];
 				if( KeyCode.Mouse0 > keyCode || keyCode > KeyCode.Mouse6 ){
 					continue;
 				}
-				this.keyMap[i] = (keyCode, (EGameInput)i);
+				list.Add((keyCode, (EGameInput)i));
 			}
+			// list to keyMap
+			this.keyMap = list.ToArray();
 		}
 
 		public void UpdateInput(ref GameInput gameInput)
@@ -49,6 +51,6 @@ namespace RLTPS.View.Input
 			}
 
 		}
-		
+
 	}
 }

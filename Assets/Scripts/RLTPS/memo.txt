@@ -22,4 +22,11 @@ var b = new classB(a)
 a = null;
 //b.a is not null!
 
-# 
+# 移動
+https://qiita.com/YamadaGames/items/cde2162b52ba80bc0beb
+transform.Translate()	引数分の移動(Time.deltaTimeをかけるといい)
+transform.position = 	瞬間移動
+Rigidbody.velocity	物理演算がある場合の移動(translateだと壁抜け、一瞬壁の中に入る事により物理がおかしくなる)
+Rigidbody.AddForce	物理演算がある場合の移動(translateだと壁抜け、一瞬壁の中に入る事により物理がおかしくなる)
+物理演算系の移動をする際はFixedUpdateで
+FixedUpdateはTime.deltaTime不要

@@ -20,7 +20,7 @@ namespace RLTPS.Scene
 	public abstract class BaseScene
 	{
 
-		protected readonly Subject<EScene> sbjChangeScene;
+		readonly Subject<EScene> sbjChangeScene;
 
 		// Constructor
 		public BaseScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
@@ -33,16 +33,17 @@ namespace RLTPS.Scene
 
 		public abstract void LoadStart();
 
-		public abstract bool LoadUpdate();
+		public abstract bool LoadUpdate(float deltaTime);
 
 		public abstract void Start();
 
-		public abstract bool Update();
+		public abstract bool Update(float deltaTime);
 
 		public abstract void EndStart();
 
-		public abstract bool EndUpdate();
+		public abstract bool EndUpdate(float deltaTime);
 
+		public virtual void FixedUpdate(){}
 
 		protected void ChangeSceneTo(EScene type)
 		{

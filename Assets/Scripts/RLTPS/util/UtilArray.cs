@@ -23,6 +23,12 @@ namespace RLTPS.Util
 			this.size = 0;
 		}
 
+		public UtilArray()
+			: this(0)
+		{
+		}
+
+
 		public T[] List { get { return this.buf; } }
 
 		public int Size { get { return this.size; } }
@@ -82,6 +88,14 @@ namespace RLTPS.Util
 			}
 			this.head = 0;
 			this.size = 0;
+		}
+
+		public void ReSize(int newLimit)
+		{
+			for(int i = 0 ; i < this.buf.Length ; i++){
+				this.buf[i] = null;
+			}
+			Array.Resize(ref this.buf, newLimit);
 		}
 
 		private int Seek(int head, T[] buf)

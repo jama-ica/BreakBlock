@@ -24,16 +24,18 @@ namespace RLTPS.View.Input
 
 		public void InitKeyConfig(KeyConfigData keyConfig)
 		{
+			var list = new List<(KeyCode keyCode, EGameInput gameInputType)>();
 			KeyCode[] keyPairs = keyConfig.KeyPairs;
-			this.keyMap = new (KeyCode keyCode, EGameInput gameInputType)[keyPairs.Length];
 
 			for(int i = 0 ; i < keyPairs.Length ; i++){
 				KeyCode keyCode = keyPairs[i];
 				if( KeyCode.Backspace > keyCode || keyCode > KeyCode.Menu ){
 					continue;
 				}
-				this.keyMap[i] = (keyCode, (EGameInput)i);
+				list.Add((keyCode, (EGameInput)i));
 			}
+			// list to keyMap
+			this.keyMap = list.ToArray();
 		}
 
 		public void UpdateInput(ref GameInput gameInput)

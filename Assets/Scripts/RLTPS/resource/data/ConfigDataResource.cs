@@ -57,7 +57,7 @@ namespace RLTPS.Resource
 
 		ConfigData CreateNewConfigData()
 		{
-			return new ConfigData();
+			return ConfigData.CreateDefault();
 		}
 		
 		

@@ -9,8 +9,7 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BarStageObject : 
-	StageObject
+	public class BarStageObject : StageObjectMovable
 	{
 		readonly ModelPrefabResource resource;
 

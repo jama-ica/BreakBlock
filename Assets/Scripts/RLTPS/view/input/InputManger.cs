@@ -15,17 +15,17 @@ namespace RLTPS.View.Input
 	{
 		KeyboardInputDevice keyboard;
 		MouseInputDevice mouse;
-		GameInput currentInput;
+		GameInput _currentInput;
 
 		// Constructor
 		public InputManager(DeviceManager deviceManager)
 		{
 			this.keyboard = new KeyboardInputDevice(deviceManager.Keyboard);
 			this.mouse = new MouseInputDevice(deviceManager.Mouse);
-			this.currentInput = new GameInput();
+			this._currentInput = new GameInput();
 		}
 
-		public GameInput CurrentInput { get{ return this.currentInput; }}
+		public GameInput CurrentInput { get{ return this._currentInput; }}
 
 		public void InitKeyConfig(KeyConfigData keyConfig)
 		{
@@ -35,8 +35,8 @@ namespace RLTPS.View.Input
 
 		public void Update()
 		{
-			this.mouse.UpdateInput(ref this.currentInput);
-			this.keyboard.UpdateInput(ref this.currentInput);
+			this.mouse.UpdateInput(ref this._currentInput);
+			this.keyboard.UpdateInput(ref this._currentInput);
 		}
 
 

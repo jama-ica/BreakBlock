@@ -10,11 +10,15 @@ namespace RLTPS.Model
 	/// </summary>
 	public class BarModel
 	{
+		float _speed;
 
 		// Constructor
-		public BarModel()
+		public BarModel(float speed)
 		{
+			this._speed = speed;
 		}
+
+		public float Speed { get{ return this._speed; } }
 
 
 		

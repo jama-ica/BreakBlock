@@ -12,6 +12,16 @@ namespace RLTPS.Model
 	[MessagePackObject]
 	public class KeyConfigData
 	{
+
+		public static KeyConfigData CreateDefault()
+		{
+			KeyConfigData data = new KeyConfigData();
+			data.SetKeyPair(EGameInput.MoveRight, KeyCode.RightArrow);
+			data.SetKeyPair(EGameInput.MoveLeft, KeyCode.LeftArrow);
+			return data;
+		}
+
+
 		[Key(0)]
 		public KeyCode[] KeyPairs { get; set; }
 
@@ -19,8 +29,6 @@ namespace RLTPS.Model
 		public KeyConfigData()
 		{
 			this.KeyPairs = new KeyCode[(int)EGameInput.MAX];
-			this.KeyPairs[(int)EGameInput.MoveRight] = KeyCode.RightArrow;
-			this.KeyPairs[(int)EGameInput.MoveLeft] = KeyCode.LeftArrow;
 		}
 
 		public void SetKeyPair(EGameInput gameInput, KeyCode keyCode)
@@ -31,6 +39,15 @@ namespace RLTPS.Model
 		public KeyCode GetKeyCode(EGameInput gameInput)
 		{
 			return this.KeyPairs[(int)gameInput];
+		}
+
+		public void CopyFrom(KeyConfigData keyData)
+		{
+			for(int i = 0 ; i < this.KeyPairs.Length ; i++)
+			{
+				EGameInput gameInput = (EGameInput)i;
+				SetKeyPair(gameInput, keyData.GetKeyCode(gameInput));
+			}
 		}
 
 	}
