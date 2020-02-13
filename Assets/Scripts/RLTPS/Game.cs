@@ -44,7 +44,7 @@ namespace RLTPS
 			this.controller = new Controller(this.gameModel, this.resourceManager);
 
 			this.viewManager = new ViewManager(this.deviceManager);
-			this.entityManager = new EntityManager();
+			this.entityManager = new EntityManager(this.resourceManager);
 			this.viewCommandProcessor = new ViewCommandProcessor(this.controller, this.resourceManager, this.viewManager, this.entityManager);
 
 			this.sceneManager = SceneManagerFactory.Create(this.controller, this.viewManager, this.resourceManager, this.entityManager);

@@ -11,18 +11,16 @@ namespace RLTPS.View.Stage
 	/// </summary>
 	public class BarStageObject : StageObjectMovable
 	{
-		readonly ModelPrefabResource resource;
 
 		// Constructor
-		public BarStageObject(ModelPrefabResource resource)
+		public BarStageObject()
 			: base()
 		{
-			this.resource = resource;
 		}
 
-		public override GameObject Load()
+		public GameObject Load(ModelPrefabResource resource)
 		{
-			return this.resource.Get(EModelPrefabType.Bar);
+			return resource.Get(EModelPrefabType.Bar);
 		}
 
 		public bool IsLoaded()

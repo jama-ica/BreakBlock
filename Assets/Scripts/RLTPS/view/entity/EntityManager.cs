@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.Util;
+using RLTPS.Resource;
 
 namespace RLTPS.View.Entity
 {
@@ -19,14 +20,18 @@ namespace RLTPS.View.Entity
 		UtilList<EntityObject> objects;
 		UtilList<EntityBehavior> behaviors;
 
+		readonly ResourceManager resourceManager;
+
 		// Constructor
-		public EntityManager()
+		public EntityManager(ResourceManager resourceManager)
 		{
 			this.newObjects = new UtilList<EntityObject>(100);
 			this.newBbehaviors = new UtilList<EntityBehavior>(100);
 
 			this.objects = new UtilList<EntityObject>(100);
 			this.behaviors = new UtilList<EntityBehavior>(100);
+
+			this.resourceManager = resourceManager;
 		}
 
 		public void Add(EntityObject obj)
@@ -41,24 +46,6 @@ namespace RLTPS.View.Entity
 
 		public void Update()
 		{
-			// Copy from queue
-			if(!this.newObjects.IsEmpty()){
-				EntityObject[] list = this.newObjects.List;
-				for(int i = 0, size = this.newObjects.Size ; i < size ; i++){
-					list[i].Start();
-					this.objects.Add(list[i]);
-				}
-				this.newObjects.Clear();
-			}
-			if(!this.newBbehaviors.IsEmpty()){
-				EntityBehavior[] list = this.newBbehaviors.List;
-				for(int i = 0, size = this.newBbehaviors.Size ; i < size ; i++){
-					list[i].Start();
-					this.behaviors.Add(list[i]);
-				}
-				this.newBbehaviors.Clear();
-			}
-
 			// Update
 			{
 				int i = 0;
@@ -86,6 +73,26 @@ namespace RLTPS.View.Entity
 						this.behaviors.Remove(i);
 					}
 				}
+			}
+
+			// Copy from queue
+			if(!this.newObjects.IsEmpty()){
+				EntityObject[] list = this.newObjects.List;
+				for(int i = 0, size = this.newObjects.Size ; i < size ; i++){
+					list[i].Load(this.resourceManager);
+					list[i].Start();
+					this.objects.Add(list[i]);
+				}
+				this.newObjects.Clear();
+			}
+			if(!this.newBbehaviors.IsEmpty()){
+				EntityBehavior[] list = this.newBbehaviors.List;
+				for(int i = 0, size = this.newBbehaviors.Size ; i < size ; i++){
+					list[i].Load(this.resourceManager);
+					list[i].Start();
+					this.behaviors.Add(list[i]);
+				}
+				this.newBbehaviors.Clear();
 			}
 
 		}

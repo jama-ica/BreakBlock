@@ -26,8 +26,6 @@ namespace RLTPS.View.Stage
 			this._gameObj = gameObj;
 		}
 
-		public abstract GameObject Load();
-
 		public virtual void Start(){}
 
 	}

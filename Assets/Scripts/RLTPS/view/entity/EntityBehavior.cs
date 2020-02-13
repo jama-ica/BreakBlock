@@ -20,12 +20,18 @@ namespace RLTPS.View.Entity
 			this.Alive = true;
 		}
 
+		public abstract void Load(ResourceManager resourceManager);
 
 		public abstract void Start();
 
 		public abstract void Update();
 		
 		public abstract void End();
+
+		protected void Dead()
+		{
+			this.Alive = false;
+		}
 
 	}
 }
