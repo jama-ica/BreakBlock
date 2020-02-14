@@ -9,20 +9,20 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BallStageObject : StageObjectMovable
+	public class BlockStageObject : StageObjectMovable
 	{
-		
+
 		// Constructor
-		public BallStageObject()
+		public BlockStageObject()
 			: base()
 		{
 		}
 
 		public override void Load(ResourceManager resourceManager)
 		{
-			this._srcObj = resourceManager.Model.LoadOrGet(EModelPrefabType.Ball);
+			this._srcObj = resourceManager.Model.LoadOrGet(EModelPrefabType.Block);
 		}
-		
+
 		
 	}
 }

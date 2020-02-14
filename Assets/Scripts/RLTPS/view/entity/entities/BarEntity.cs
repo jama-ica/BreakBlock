@@ -38,7 +38,7 @@ namespace RLTPS.View.Entity
 		// }
 		public override void Load(ResourceManager resourceManager)
 		{
-			this.barObj.Load(resourceManager.Model);
+			this.barObj.Load(resourceManager);
 		}
 
 		public override void Start()

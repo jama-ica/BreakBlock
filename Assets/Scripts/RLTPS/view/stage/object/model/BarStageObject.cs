@@ -18,16 +18,11 @@ namespace RLTPS.View.Stage
 		{
 		}
 
-		public GameObject Load(ModelPrefabResource resource)
+		public override void Load(ResourceManager resourceManager)
 		{
-			return resource.Get(EModelPrefabType.Bar);
+			this._srcObj = resourceManager.Model.LoadOrGet(EModelPrefabType.Bar);
 		}
 
-		public bool IsLoaded()
-		{
-			return this.GameObj != null;
-		}
-		
 		
 	}
 }

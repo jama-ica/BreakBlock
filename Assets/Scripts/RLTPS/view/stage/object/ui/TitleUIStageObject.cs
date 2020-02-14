@@ -21,9 +21,9 @@ namespace RLTPS.View.Stage
 			this.resource = resource;
 		}
 
-		public override GameObject Load()
+		public override void Load(ResourceManager resourceManager)
 		{
-			return resource.LoadOrGet(EUIPrefabType.Title);
+			//TODO resource.LoadOrGet(EUIPrefabType.Title);
 		}
 
 		public override void Start()

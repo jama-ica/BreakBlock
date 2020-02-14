@@ -9,6 +9,8 @@ namespace RLTPS.Resource
 	public enum EModelPrefabType
 	{
 		Bar,
+		Ball,
+		Block,
 		//--
 		MAX
 	}
@@ -18,6 +20,8 @@ namespace RLTPS.Resource
 		static readonly UtilPairs<string> PathPairs = new UtilPairs<string>(
 			new (int key, string val)[]{
 				((int)EModelPrefabType.Bar, "Prefabs/3D/Bar"),
+				((int)EModelPrefabType.Ball, "Prefabs/3D/Ball"),
+				((int)EModelPrefabType.Block, "Prefabs/3D/Block"),
 			}
 		);
 

@@ -51,7 +51,8 @@ namespace RLTPS.View.Command
 
 		public void CreateBall(BallModel ball)
 		{
-			//TODO
+			var ballEntity = new BallEntity(this.controller, this.resourceManager, this.viewManager);
+			this.entityManager.Add(ballEntity);
 		}
 
 		public void CreateBlock(BlockModel block)

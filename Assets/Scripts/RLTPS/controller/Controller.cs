@@ -47,7 +47,8 @@ namespace RLTPS.Control
 		
 		void CreateBall()
 		{
-			//TODO
+			BallModel ball = this.gameModel.CreateBall();
+			this.viewCommandSender.CreateBall(ball);
 		}
 
 		void CreateBlocks()
