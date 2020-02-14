@@ -34,7 +34,7 @@ public class MenuItems : MonoBehaviour {
             RedirectStandardError = true,
             UseShellExecute = false,
             FileName = filePath + exeFileName,
-            Arguments = $@"-i ""{Application.dataPath}/Scripts/Tables"" -o ""{Application.dataPath}/Scripts/Generated"" -n ""MasterData""",
+            Arguments = $@"-i ""{Application.dataPath}/Scripts/Tables"" -o ""{Application.dataPath}/Scripts/RLTPS/mastermemory"" -n ""RLTPS""",
         };
 
         var p = Process.Start (psi);
@@ -74,7 +74,7 @@ public class MenuItems : MonoBehaviour {
             RedirectStandardError = true,
             UseShellExecute = false,
             FileName = filePath + exeFileName,
-            Arguments = $@"-i ""{Application.dataPath}/../Assembly-CSharp.csproj"" -o ""{Application.dataPath}/Scripts/Generated/MessagePack.Generated.cs""",
+            Arguments = $@"-i ""{Application.dataPath}/../Assembly-CSharp.csproj"" -o ""{Application.dataPath}/Scripts/RLTPS/mastermemory/MessagePack.Generated.cs""",
         };
 
         var p = Process.Start (psi);

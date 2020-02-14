@@ -5,7 +5,7 @@ using MessagePack;
 using System.Collections.Generic;
 using System;
 
-namespace MasterData.Tables
+namespace RLTPS.Tables
 {
    public sealed partial class PersonTable : TableBase<Person>, ITableUniqueValidate
    {

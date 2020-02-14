@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using MasterData;
 using MessagePack;
 using MessagePack.Resolvers;
 using MasterMemory;

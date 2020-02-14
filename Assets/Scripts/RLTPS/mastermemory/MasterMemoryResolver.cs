@@ -4,9 +4,9 @@ using MasterMemory;
 using MessagePack;
 using System.Collections.Generic;
 using System;
-using MasterData.Tables;
+using RLTPS.Tables;
 
-namespace MasterData
+namespace RLTPS
 {
     public class MasterMemoryResolver : global::MessagePack.IFormatterResolver
     {

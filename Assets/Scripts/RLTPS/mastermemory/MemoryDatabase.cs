@@ -4,9 +4,9 @@ using MasterMemory;
 using MessagePack;
 using System.Collections.Generic;
 using System;
-using MasterData.Tables;
+using RLTPS.Tables;
 
-namespace MasterData
+namespace RLTPS
 {
    public sealed class MemoryDatabase : MemoryDatabaseBase
    {
@@ -74,7 +74,7 @@ namespace MasterData
             if (metaTable != null) return metaTable;
 
             var dict = new Dictionary<string, MasterMemory.Meta.MetaTable>();
-            dict.Add("person", MasterData.Tables.PersonTable.CreateMetaTable());
+            dict.Add("person", RLTPS.Tables.PersonTable.CreateMetaTable());
 
             metaTable = new MasterMemory.Meta.MetaDatabase(dict);
             return metaTable;
