@@ -33,7 +33,7 @@ namespace RLTPS.View.Entity
 
 		public override void Start()
 		{
-			this.gameStage.Stage(blockObj);
+			this.gameStage.Stage(blockObj, .0f, .0f, .0f);
 		}
 		
 		public override void Update()

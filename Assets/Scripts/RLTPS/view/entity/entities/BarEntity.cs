@@ -18,6 +18,8 @@ namespace RLTPS.View.Entity
 	{
 
 		BarStageObject barObj;
+		RigidBodyController rigidBodyController;
+		TransFormController transFormController;
 		//--
 		readonly GameStage gameStage;
 		readonly GameInput currentInput;
@@ -27,6 +29,7 @@ namespace RLTPS.View.Entity
 			: base(controller, resourceManager, viewManager)
 		{
 			this.barObj = new BarStageObject();
+			this.rigidBodyController = null;
 			//--
 			this.gameStage = viewManager.Stage;
 			this.currentInput = viewManager.InputManager.CurrentInput;
@@ -43,7 +46,9 @@ namespace RLTPS.View.Entity
 
 		public override void Start()
 		{
-			this.gameStage.Stage(barObj);
+			this.gameStage.Stage(barObj, .0f, .0f, .0f);
+			this.rigidBodyController = new RigidBodyController(barObj.GameObj.GetComponent<Rigidbody>());
+			this.transFormController = new TransFormController(barObj.GameObj.transform);
 		}
 		
 		public override void Update()
@@ -52,15 +57,12 @@ namespace RLTPS.View.Entity
 				return;
 			}
 			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
-				barObj.Move(EDir.LEFT, 1.0f);
-				//TODO
+				this.transFormController.Move(EDir.LEFT, .1f);
 			}
 			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
-				barObj.Move(EDir.RIGHT, 1.0f);
-				//TODO
+				this.transFormController.Move(EDir.RIGHT, .1f);
 			}
 		}
-
 
 		public override void End()
 		{

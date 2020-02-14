@@ -28,11 +28,11 @@ namespace RLTPS.View.Stage
 			this.modelObjs.Clear();
 		}
 
-		public void Stage(StageObject stageObj)
+		public void Stage(StageObject stageObj, float x, float y, float z)
 		{
 			GameObject srcObj = stageObj.SrcObj;
 			Assert.IsNotNull(srcObj);
-			GameObject newGameObj = GameObject.Instantiate(srcObj, new Vector3(0, 0, 0), Quaternion.identity);
+			GameObject newGameObj = GameObject.Instantiate(srcObj, new Vector3(x, y, z), Quaternion.identity);
 			stageObj.SetGameObj(newGameObj);
 			stageObj.Start();
 			this.modelObjs.Add(stageObj);

@@ -37,7 +37,7 @@ namespace RLTPS.View.Entity
 
 		public override void Start()
 		{
-			this.gameStage.Stage(ballObj);
+			this.gameStage.Stage(ballObj, .0f, 1.0f, .0f);
 		}
 		
 		public override void Update()

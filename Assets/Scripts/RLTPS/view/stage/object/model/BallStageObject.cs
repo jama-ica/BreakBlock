@@ -9,7 +9,7 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BallStageObject : StageObjectMovable
+	public class BallStageObject : StageObject
 	{
 		
 		// Constructor
