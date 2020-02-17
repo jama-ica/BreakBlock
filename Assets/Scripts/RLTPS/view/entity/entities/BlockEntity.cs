@@ -14,37 +14,26 @@ namespace RLTPS.View.Entity
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BlockEntity : EntityBehavior
+	public class BlockEntity : EntityObject
 	{
-		BallStageObject blockObj;
-		//--
-		readonly GameStage gameStage;
+		BlockStageObject blockObj;
 
 		// Constructor
-		public BlockEntity(Controller controller, ResourceManager resourceManager, ViewManager viewManager)
-			: base(controller, resourceManager, viewManager)
+		public BlockEntity(Controller controller, ResourceManager resourceManager, ViewManager viewManager, BlockModels blockModel)
+			: base()
 		{
-		}
-
-		public override void Load(ResourceManager resourceManager)
-		{
-			this.blockObj.Load(resourceManager);
+			this.blockObj = new BlockStageObject(viewManager.Stage, resourceManager.Model);
 		}
 
 		public override void Start()
 		{
-			this.gameStage.Stage(blockObj, .0f, .0f, .0f);
-		}
-		
-		public override void Update()
-		{
+			this.blockObj.Load();
+			this.blockObj.Stage();
 		}
 
 		public override void End()
 		{
+			this.blockObj.UnStage();
 		}
-
-		
-		
 	}
 }

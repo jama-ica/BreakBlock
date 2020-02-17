@@ -46,7 +46,7 @@ namespace RLTPS.Model
 			for(int i = 0 ; i < this.KeyPairs.Length ; i++)
 			{
 				EGameInput gameInput = (EGameInput)i;
-				SetKeyPair(gameInput, keyData.GetKeyCode(gameInput));
+				this.SetKeyPair(gameInput, keyData.GetKeyCode(gameInput));
 			}
 		}
 

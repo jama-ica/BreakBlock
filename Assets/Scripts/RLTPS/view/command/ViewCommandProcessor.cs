@@ -43,21 +43,22 @@ namespace RLTPS.View.Command
 			//TODO
 		}
 
-		public void CreateBar(BarModel bar)
+		public void CreateBar(BarModel barModel)
 		{
-			var barEntity = new BarEntity(this.controller, this.resourceManager, this.viewManager);
+			var barEntity = new BarEntity(this.controller, this.resourceManager, this.viewManager, barModel);
 			this.entityManager.Add(barEntity);
 		}
 
-		public void CreateBall(BallModel ball)
+		public void CreateBall(BallModel ballModel)
 		{
-			var ballEntity = new BallEntity(this.controller, this.resourceManager, this.viewManager);
+			var ballEntity = new BallEntity(this.controller, this.resourceManager, this.viewManager, ballModel);
 			this.entityManager.Add(ballEntity);
 		}
 
-		public void CreateBlock(BlockModel block)
+		public void CreateBlocks(BlockModels blockModel)
 		{
-			//TODO
+			var blockEntity = new BlockEntity(this.controller, this.resourceManager, this.viewManager, blockModel);
+			this.entityManager.Add(blockEntity);
 		}	
 		
 	}

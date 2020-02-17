@@ -16,6 +16,6 @@ namespace RLTPS.Control
 		void CreateTitle();
 		void CreateBar(BarModel bar);
 		void CreateBall(BallModel ball);
-		void CreateBlock(BlockModel block);
+		void CreateBlocks(BlockModels block);
 	}
 }

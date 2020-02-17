@@ -23,12 +23,6 @@ namespace RLTPS.Util
 			this.size = 0;
 		}
 
-		public UtilArray()
-			: this(0)
-		{
-		}
-
-
 		public T[] List { get { return this.buf; } }
 
 		public int Size { get { return this.size; } }

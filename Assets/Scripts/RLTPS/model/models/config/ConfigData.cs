@@ -28,7 +28,7 @@ namespace RLTPS.Model
 		}
 
 		public ConfigData()
-			:this(new KeyConfigData())
+			: this(new KeyConfigData())
 		{
 		}
 

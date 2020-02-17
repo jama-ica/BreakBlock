@@ -19,8 +19,7 @@ namespace RLTPS.View
 	/// </summary>
 	public class ViewManager
 	{
-		public GameStage Stage { get; private set; }
-		public UIManager UI { get; private set; }
+		public ViewStage Stage { get; private set; }
 		public SoundPlayer SoundPlayer { get; private set; }
 		public EffectPlayer EffectPlayer { get; private set; }
 		public InputManager InputManager { get; private set; }
@@ -28,8 +27,7 @@ namespace RLTPS.View
 		// Constructor
 		public ViewManager(DeviceManager deviceManager)
 		{
-			this.Stage = new GameStage();
-			this.UI = new UIManager();
+			this.Stage = new ViewStage();
 			this.SoundPlayer = new SoundPlayer();
 			this.EffectPlayer = new EffectPlayer();
 			this.InputManager = new InputManager(deviceManager);

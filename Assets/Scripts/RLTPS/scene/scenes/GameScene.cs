@@ -25,8 +25,8 @@ namespace RLTPS.Scene
 		readonly InputManager inputManager;
 
 		// Constructor
-		public GameScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
-			: base(controller, resourceManager, viewManager, entityManager, sbjChangeScene)
+		public GameScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager)
+			: base()
 		{
 			this.controller = controller;
 			this.resourceManager = resourceManager;
@@ -34,43 +34,37 @@ namespace RLTPS.Scene
 			this.inputManager = viewManager.InputManager;
 		}
 
-		public override void Init()
-		{
-
-		}
-
-		public override void LoadStart()
+		protected override void LoadStart()
 		{
 			resourceManager.Model.Load(EModelPrefabType.Bar);
 		}
 
-		public override bool LoadUpdate(float deltaTime)
+		protected override bool LoadUpdate(float deltaTime)
 		{
 			return false;
 		}
 
-		public override void Start()
+		protected override void SceneStart()
 		{
 			this.controller.StartStage();
 		}
 
-		public override bool Update(float deltaTime)
+		protected override void SceneUpdate(float deltaTime)
 		{
 			this.inputManager.Update();
-			this.entityManager.Update();
-			return true;
+			this.entityManager.Update(deltaTime);
 		}
 
 		public override void FixedUpdate()
 		{
-
+			this.entityManager.FixedUpdate();
 		}
 
-		public override void EndStart()
+		protected override void EndStart()
 		{
 		}
 
-		public override bool EndUpdate(float deltaTime)
+		protected override bool EndUpdate(float deltaTime)
 		{
 			return false;
 		}

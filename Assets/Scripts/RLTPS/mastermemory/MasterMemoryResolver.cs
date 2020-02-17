@@ -2,6 +2,7 @@
 using MasterMemory.Validation;
 using MasterMemory;
 using MessagePack;
+using RLTPS.LevelData;
 using System.Collections.Generic;
 using System;
 using RLTPS.Tables;
@@ -45,7 +46,7 @@ namespace RLTPS
         {
             lookup = new global::System.Collections.Generic.Dictionary<Type, int>(1)
             {
-                {typeof(Person[]), 0 },
+                {typeof(GameStage[]), 0 },
             };
         }
 
@@ -56,7 +57,7 @@ namespace RLTPS
 
             switch (key)
             {
-                case 0: return new MessagePack.Formatters.ArrayFormatter<Person>();
+                case 0: return new MessagePack.Formatters.ArrayFormatter<GameStage>();
                 default: return null;
             }
         }

@@ -5,7 +5,6 @@ using UnityEngine.Assertions;
 using RLTPS.Model;
 using RLTPS.Control;
 using RLTPS.Util;
-using RLTPS.Resource;
 
 namespace RLTPS.View.Entity
 {
@@ -14,45 +13,40 @@ namespace RLTPS.View.Entity
 	/// </summary>
 	public class EntityManager
 	{
-		UtilList<EntityObject> newObjects;
-		UtilList<EntityBehavior> newBbehaviors;
-
 		UtilList<EntityObject> objects;
 		UtilList<EntityBehavior> behaviors;
 
-		readonly ResourceManager resourceManager;
-
 		// Constructor
-		public EntityManager(ResourceManager resourceManager)
+		public EntityManager()
 		{
-			this.newObjects = new UtilList<EntityObject>(100);
-			this.newBbehaviors = new UtilList<EntityBehavior>(100);
-
 			this.objects = new UtilList<EntityObject>(100);
 			this.behaviors = new UtilList<EntityBehavior>(100);
-
-			this.resourceManager = resourceManager;
 		}
 
 		public void Add(EntityObject obj)
 		{
-			this.newObjects.Add(obj);
+			obj.Start();
+			this.objects.Add(obj);
 		}
 
 		public void Add(EntityBehavior behavior)
 		{
-			this.newBbehaviors.Add(behavior);
+			behavior.Start();
+			this.behaviors.Add(behavior);
 		}
 
-		public void Update()
+		public void Update(float deltaTime)
 		{
-			// Update
 			{
-				int i = 0;
-				while(i < this.objects.Size)
+				EntityObject[] list = this.objects.List;
+				EntityObject item;
+				for(int i = 0, size = this.objects.Size ; i < size ; )
 				{
-					EntityObject item = this.objects.Get(i);
-					if(item.Alive){
+					item = list[i];
+					if( item == null ){
+						continue;
+					}
+					if( item.Alive ){
 						i++;
 					}else{
 						item.End();
@@ -61,42 +55,51 @@ namespace RLTPS.View.Entity
 				}
 			}
 			{
-				int i = 0;
-				while(i < this.behaviors.Size)
+				EntityBehavior[] list = this.behaviors.List;
+				EntityBehavior item;
+				for(int i = 0, size = this.behaviors.Size ; i < size ; )
 				{
-					EntityBehavior item = this.behaviors.Get(i);
-					if(item.Alive){
-						item.Update();
+					item = list[i];
+					if( item == null ){
+						continue;
+					}
+					if( item.Update(deltaTime) ){
 						i++;
 					}else{
-						item.End();
 						this.behaviors.Remove(i);
 					}
 				}
 			}
-
-			// Copy from queue
-			if(!this.newObjects.IsEmpty()){
-				EntityObject[] list = this.newObjects.List;
-				for(int i = 0, size = this.newObjects.Size ; i < size ; i++){
-					list[i].Load(this.resourceManager);
-					list[i].Start();
-					this.objects.Add(list[i]);
-				}
-				this.newObjects.Clear();
-			}
-			if(!this.newBbehaviors.IsEmpty()){
-				EntityBehavior[] list = this.newBbehaviors.List;
-				for(int i = 0, size = this.newBbehaviors.Size ; i < size ; i++){
-					list[i].Load(this.resourceManager);
-					list[i].Start();
-					this.behaviors.Add(list[i]);
-				}
-				this.newBbehaviors.Clear();
-			}
-
 		}
 
+		public void FixedUpdate()
+		{
+			EntityBehavior[] list = this.behaviors.List;
+			for(int i = 0, size = this.behaviors.Size ; i < size ; i++ )
+			{
+				list[i].FixedUpdate();
+			}
+		}
+
+		public void End()
+		{
+			{
+				EntityObject[] list = this.objects.List;
+				for(int i = 0, size = this.objects.Size ; i < size ; )
+				{
+					list[i].End();
+				}
+				this.objects.Clear();
+			}
+			{
+				EntityBehavior[] list = this.behaviors.List;
+				for(int i = 0, size = this.behaviors.Size ; i < size ; )
+				{
+					list[i].End();
+				}
+				this.behaviors.Clear();
+			}
+		}
 
 	}
 }

@@ -34,7 +34,7 @@ namespace RLTPS.Control
 		public void InitLoad()
 		{
 			// master data
-			this.resourceManager.MasterData.Load();
+			RLTPS.Model.MasterData masterData = this.resourceManager.MasterData.Load();
 
 			// config data
 			var config = this.resourceManager.ConfigData.Load();
@@ -45,16 +45,5 @@ namespace RLTPS.Control
 			this.resourceManager.SaveData.Load();
 		}
 		
-		void CreateBall()
-		{
-			BallModel ball = this.gameModel.CreateBall();
-			this.viewCommandSender.CreateBall(ball);
-		}
-
-		void CreateBlocks()
-		{
-			//TODO
-		}
-
 	}
 }

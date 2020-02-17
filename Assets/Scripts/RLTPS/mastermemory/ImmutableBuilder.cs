@@ -2,6 +2,7 @@
 using MasterMemory.Validation;
 using MasterMemory;
 using MessagePack;
+using RLTPS.LevelData;
 using System.Collections.Generic;
 using System;
 using RLTPS.Tables;
@@ -22,32 +23,32 @@ namespace RLTPS
             return memory;
         }
 
-        public void ReplaceAll(System.Collections.Generic.IList<Person> data)
+        public void ReplaceAll(System.Collections.Generic.IList<GameStage> data)
         {
-            var newData = CloneAndSortBy(data, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
-            var table = new PersonTable(newData);
+            var newData = CloneAndSortBy(data, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
+            var table = new GameStageTable(newData);
             memory = new MemoryDatabase(
                 table
             
             );
         }
 
-        public void RemovePerson(int[] keys)
+        public void RemoveGameStage(int[] keys)
         {
-            var data = RemoveCore(memory.PersonTable.GetRawDataUnsafe(), keys, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
-            var table = new PersonTable(newData);
+            var data = RemoveCore(memory.GameStageTable.GetRawDataUnsafe(), keys, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
+            var table = new GameStageTable(newData);
             memory = new MemoryDatabase(
                 table
             
             );
         }
 
-        public void Diff(Person[] addOrReplaceData)
+        public void Diff(GameStage[] addOrReplaceData)
         {
-            var data = DiffCore(memory.PersonTable.GetRawDataUnsafe(), addOrReplaceData, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
-            var newData = CloneAndSortBy(data, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
-            var table = new PersonTable(newData);
+            var data = DiffCore(memory.GameStageTable.GetRawDataUnsafe(), addOrReplaceData, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
+            var newData = CloneAndSortBy(data, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
+            var table = new GameStageTable(newData);
             memory = new MemoryDatabase(
                 table
             

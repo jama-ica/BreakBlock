@@ -2,6 +2,7 @@
 using MasterMemory.Validation;
 using MasterMemory;
 using MessagePack;
+using RLTPS.LevelData;
 using System.Collections.Generic;
 using System;
 using RLTPS.Tables;
@@ -10,13 +11,13 @@ namespace RLTPS
 {
    public sealed class MemoryDatabase : MemoryDatabaseBase
    {
-        public PersonTable PersonTable { get; private set; }
+        public GameStageTable GameStageTable { get; private set; }
 
         public MemoryDatabase(
-            PersonTable PersonTable
+            GameStageTable GameStageTable
         )
         {
-            this.PersonTable = PersonTable;
+            this.GameStageTable = GameStageTable;
         }
 
         public MemoryDatabase(byte[] databaseBinary, bool internString = true, MessagePack.IFormatterResolver formatterResolver = null)
@@ -26,7 +27,7 @@ namespace RLTPS
 
         protected override void Init(Dictionary<string, (int offset, int count)> header, System.ReadOnlyMemory<byte> databaseBinary, MessagePack.MessagePackSerializerOptions options)
         {
-            this.PersonTable = ExtractTableData<Person, PersonTable>(header, databaseBinary, options, xs => new PersonTable(xs));
+            this.GameStageTable = ExtractTableData<GameStage, GameStageTable>(header, databaseBinary, options, xs => new GameStageTable(xs));
         }
 
         public ImmutableBuilder ToImmutableBuilder()
@@ -37,7 +38,7 @@ namespace RLTPS
         public DatabaseBuilder ToDatabaseBuilder()
         {
             var builder = new DatabaseBuilder();
-            builder.Append(this.PersonTable.GetRawDataUnsafe());
+            builder.Append(this.GameStageTable.GetRawDataUnsafe());
             return builder;
         }
 
@@ -46,11 +47,11 @@ namespace RLTPS
             var result = new ValidateResult();
             var database = new ValidationDatabase(new object[]
             {
-                PersonTable,
+                GameStageTable,
             });
 
-            ((ITableUniqueValidate)PersonTable).ValidateUnique(result);
-            ValidateTable(PersonTable.All, database, "PersonId", PersonTable.PrimaryKeySelector, result);
+            ((ITableUniqueValidate)GameStageTable).ValidateUnique(result);
+            ValidateTable(GameStageTable.All, database, "StageID", GameStageTable.PrimaryKeySelector, result);
 
             return result;
         }
@@ -61,8 +62,8 @@ namespace RLTPS
         {
             switch (tableName)
             {
-                case "person":
-                    return db.PersonTable;
+                case "GameStage":
+                    return db.GameStageTable;
                 
                 default:
                     return null;
@@ -74,7 +75,7 @@ namespace RLTPS
             if (metaTable != null) return metaTable;
 
             var dict = new Dictionary<string, MasterMemory.Meta.MetaTable>();
-            dict.Add("person", RLTPS.Tables.PersonTable.CreateMetaTable());
+            dict.Add("GameStage", RLTPS.Tables.GameStageTable.CreateMetaTable());
 
             metaTable = new MasterMemory.Meta.MetaDatabase(dict);
             return metaTable;

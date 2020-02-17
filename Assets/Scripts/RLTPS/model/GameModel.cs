@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,19 +12,32 @@ namespace RLTPS.Model
 	/// </summary>
 	public class GameModel
 	{
-		BallModel _ball = null;
-		BarModel _bar = null;
-		BlockModels _blocks = null;
-		ConfigData _configData = null;
+
+		ConfigData _configData;
+		MasterData _masterData;
+		SaveData _saveData;
+
+		GameStageModel _stage;
 
 		// Constructor
 		public GameModel()
 		{
+			this._configData = null;
+			this._masterData = null; 
+			this._saveData = null; 
+			this._stage = null; 
 		}
 
-		// ----------------------------------------------------
-		// Config Data
-		// ----------------------------------------------------
+		public void SetMasterData(MasterData masterData)
+		{
+			if(this._masterData == null){
+				this._masterData = masterData;
+			}
+			else{
+				this._masterData.CopyFrom(masterData);
+			}
+		}
+				
 		public void SetConfigData(ConfigData configData)
 		{
 			if(this._configData == null){
@@ -34,51 +48,25 @@ namespace RLTPS.Model
 			}
 		}
 
-		// ----------------------------------------------------
-		// Ball
-		// ----------------------------------------------------
-		public BallModel CreateBall(/* masterData */)
+		public void SetSaveData(SaveData saveData)
 		{
-			if(this._ball == null){
-				this._ball = new BallModel(.1f);
+			if(this._saveData == null){
+				this._saveData = saveData;
 			}
-			return this._ball;
-		}
-
-		public BallModel Ball{ get{ return this._ball; } }
-
-
-		// ----------------------------------------------------
-		// Bar
-		// ----------------------------------------------------
-		public BarModel CreateBar(/* masterData */)
-		{
-			if(this._bar == null){
-				this._bar = new BarModel(0.1f);
+			else{
+				this._saveData.CopyFrom(saveData);
 			}
-			return this._bar;
 		}
 
-		public BarModel Bar{ get{ return this._bar; } }
-
-
-		// ----------------------------------------------------
-		// Block
-		// ----------------------------------------------------
-
-		public BlockModels CreateBlocks(/* masterData */)
+		public void CreateStage()
 		{
-			//TODO
-			if(this._blocks == null){
-				this._blocks = new BlockModels(10, 3);
+			if(this._stage == null){
+				this._stage = new GameStageModel();
 			}
-			return this._blocks;
+			this._stage.Init(this._masterData);
 		}
 
-		public BlockModel GetBlock(EBlockID id)
-		{
-			return this._blocks.GetBlock(id);
-		}
+		public GameStageModel Stage { get { return this._stage; } }
 
 
 	}

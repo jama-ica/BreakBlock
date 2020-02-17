@@ -20,34 +20,97 @@ namespace RLTPS.Scene
 	public abstract class BaseScene
 	{
 
-		readonly Subject<EScene> sbjChangeScene;
-
-		// Constructor
-		public BaseScene(Controller controller, ResourceManager resourceManager, ViewManager viewManager, EntityManager entityManager, Subject<EScene> sbjChangeScene)
+		enum EStep
 		{
-			this.sbjChangeScene = sbjChangeScene;
+			LoadStart,
+			LoadUpdate,
+			SceneStart,
+			SceneUpdate,
+			EndStart,
+			EndUpdate,
+			//--
+			MAX
 		}
 
+		EStep currentStep;
+		EScene _nextSceneType;
 
-		public abstract void Init();
+		// Constructor
+		public BaseScene()
+		{
+			this.currentStep = EStep.MAX;
+			this._nextSceneType = EScene.MAX;
+		}
 
-		public abstract void LoadStart();
+		public EScene NextSceneType { get{ return this._nextSceneType; } }
 
-		public abstract bool LoadUpdate(float deltaTime);
+		public virtual void Init()
+		{
+			this.currentStep = EStep.LoadStart;
+			this._nextSceneType = EScene.MAX;
+		}
 
-		public abstract void Start();
+		public bool Update(float deltaTime)
+		{
+			switch(this.currentStep)
+			{
+			case EStep.LoadStart:
+				this.LoadStart();
+				this.currentStep = EStep.LoadUpdate;
+				goto case EStep.LoadUpdate;
+			
+			case EStep.LoadUpdate:
+				if( !this.LoadUpdate(deltaTime) ){
+					goto case EStep.SceneStart;
+				}
+				break;
+			
+			case EStep.SceneStart:
+				this.SceneStart();
+				this.currentStep = EStep.SceneUpdate;
+				break;
+			
+			case EStep.SceneUpdate:
+				this.SceneUpdate(deltaTime);
+				break;
+			
+			case EStep.EndStart:
+				this.EndStart();
+				this.currentStep = EStep.EndUpdate;
+				goto case EStep.EndUpdate;
+			
+			case EStep.EndUpdate:
+				if( !this.EndUpdate(deltaTime) ){
+					return false;
+				}
+				break;
 
-		public abstract bool Update(float deltaTime);
+			default:
+				Debug.LogWarning("!step = " + this.currentStep);
+				break;
+			}
+			return true;
+		}
 
-		public abstract void EndStart();
+		protected abstract void LoadStart();
 
-		public abstract bool EndUpdate(float deltaTime);
+		protected abstract bool LoadUpdate(float deltaTime);
 
-		public virtual void FixedUpdate(){}
+		protected abstract void SceneStart();
+
+		protected abstract void SceneUpdate(float deltaTime);
+
+		protected abstract void EndStart();
+
+		protected abstract bool EndUpdate(float deltaTime);
+
+		public abstract void FixedUpdate();
 
 		protected void ChangeSceneTo(EScene type)
 		{
-			this.sbjChangeScene.OnNext(type);
+			Assert.IsTrue(type != EScene.MAX);
+			this.currentStep = EStep.EndStart;
+			this._nextSceneType = type;
 		}
 		
 	}

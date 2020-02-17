@@ -2,6 +2,7 @@
 using MasterMemory.Validation;
 using MasterMemory;
 using MessagePack;
+using RLTPS.LevelData;
 using System.Collections.Generic;
 using System;
 using RLTPS.Tables;
@@ -13,9 +14,9 @@ namespace RLTPS
         public DatabaseBuilder() : this(null) { }
         public DatabaseBuilder(MessagePack.IFormatterResolver resolver) : base(resolver) { }
 
-        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<Person> dataSource)
+        public DatabaseBuilder Append(System.Collections.Generic.IEnumerable<GameStage> dataSource)
         {
-            AppendCore(dataSource, x => x.PersonId, System.Collections.Generic.Comparer<int>.Default);
+            AppendCore(dataSource, x => x.StageID, System.Collections.Generic.Comparer<int>.Default);
             return this;
         }
 

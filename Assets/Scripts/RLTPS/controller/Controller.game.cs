@@ -16,14 +16,15 @@ namespace RLTPS.Control
 	
 		public void StartStage()
 		{
-			CreateBar();
-			CreateBall();
-			CreateBlocks();
+			this.gameModel.CreateStage();
+			this.viewCommandSender.CreateBar(this.gameModel.Stage.Bar);
+			this.viewCommandSender.CreateBall(this.gameModel.Stage.Ball);
+			this.viewCommandSender.CreateBlocks(this.gameModel.Stage.Blocks);
 		}
 
 		public void BallHitWith(EBlockID id)
 		{
-			BlockModel block = this.gameModel.GetBlock(id);
+			BlockModel block = this.gameModel.Stage.GetBlock(id);
 			Damage(ref block);
 			if(block.IsDead()){
 				//TODO

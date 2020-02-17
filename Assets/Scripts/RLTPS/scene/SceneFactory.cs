@@ -32,13 +32,13 @@ namespace RLTPS.Scene
 			this.entityManager = entityManager;
 		}
 
-		public BaseScene CreateScene(EScene type, UniRx.Subject<EScene> sbjChangeScene)
+		public BaseScene CreateScene(EScene type)
 		{
 			switch(type)
 			{
-			case EScene.Init: return new InitScene(this.controller, this.resourceManager, this.viewManager, this.entityManager, sbjChangeScene);
-			case EScene.Title: return new TitleScene(this.controller, this.resourceManager, this.viewManager, this.entityManager, sbjChangeScene);
-			case EScene.Game: return new GameScene(this.controller, this.resourceManager, this.viewManager, this.entityManager, sbjChangeScene);
+			case EScene.Init: return new InitScene(this.controller, this.resourceManager, this.viewManager, this.entityManager);
+			case EScene.Title: return new TitleScene(this.controller, this.resourceManager, this.viewManager, this.entityManager);
+			case EScene.Game: return new GameScene(this.controller, this.resourceManager, this.viewManager, this.entityManager);
 			default:
 				break;
 			}

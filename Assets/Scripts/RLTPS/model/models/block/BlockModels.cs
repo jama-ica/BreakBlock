@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RLTPS.Util;
+using RLTPS.LevelData;
 
 namespace RLTPS.Model
 {
@@ -16,16 +17,16 @@ namespace RLTPS.Model
 		UtilArray<BlockModel> blocks;
 
 		// Constructor
-		public BlockModels(int width, int height)
+		public BlockModels()
 		{
-			ReSize(width, height);
+			this.width = 0;
+			this.height = 0;
+			this.blocks = new UtilArray<BlockModel>(0);
 		}
 
-		public EBlockID SetBlock(int x, int y, BlockModel block)
+		public void Init(BlockPattern blockPattern)
 		{
-			int index = x + y * this.width;
-			this.blocks.Set(index, block);
-			return (EBlockID)index;
+			//TODO
 		}
 
 		public BlockModel GetBlock(EBlockID id)
@@ -33,14 +34,21 @@ namespace RLTPS.Model
 			return blocks.Get((int)id);
 		}
 
-		public void Clear()
+		EBlockID SetBlock(int x, int y, BlockModel block)
+		{
+			int index = x + y * this.width;
+			this.blocks.Set(index, block);
+			return (EBlockID)index;
+		}
+
+		void Clear()
 		{
 			this.width = 0;
 			this.height = 0;
 			this.blocks.Clear();
 		}
 
-		public void ReSize(int width, int height)
+		void ReSize(int width, int height)
 		{
 			this.width = width;
 			this.height = height;

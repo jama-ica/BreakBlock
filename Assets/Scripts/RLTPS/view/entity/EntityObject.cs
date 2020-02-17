@@ -14,22 +14,18 @@ namespace RLTPS.View.Entity
 	public abstract class EntityObject
 	{
 
-		public bool Alive { get; protected set; }
+		public bool _alive { get; protected set; }
 
-		public EntityObject(Controller controller, ResourceManager resourceManager, ViewManager viewManager)
+		public EntityObject()
 		{
-			this.Alive = false;
+			this._alive = false;
 		}
 
-		public abstract void Load(ResourceManager resourceManager);
+		public bool Alive { get{ return this._alive; } }
 
 		public abstract void Start();
 
 		public abstract void End();
 		
-		protected void Dead()
-		{
-			this.Alive = false;
-		}
 	}
 }
