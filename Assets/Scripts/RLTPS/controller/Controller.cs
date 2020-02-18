@@ -35,10 +35,11 @@ namespace RLTPS.Control
 		{
 			// master data
 			RLTPS.Model.MasterData masterData = this.resourceManager.MasterData.Load();
+			this.gameModel.SetMasterData(masterData);
 
 			// config data
 			var config = this.resourceManager.ConfigData.Load();
-			gameModel.SetConfigData(config);
+			this.gameModel.SetConfigData(config);
 			this.viewCommandSender.InitKeyConfig(config.KeyData);
 
 			// save data

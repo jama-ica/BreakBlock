@@ -13,6 +13,13 @@ namespace RLTPS.Control
 	/// </summary>
 	public partial class Controller // for Game
 	{
+
+		Subject<EBlockID> sbjBlockDead = new Subject<EBlockID>();
+		public IObservable<EBlockID> OnBlockDead() => this.sbjBlockDead;
+
+		Subject<(EBlockID id, int damage)> sbjBlockDamaged = new Subject<(EBlockID id, int damage)>();
+		public IObservable<(EBlockID id, int damage)> OnBlockDamaged() => this.sbjBlockDamaged;
+
 	
 		public void StartStage()
 		{
@@ -25,9 +32,11 @@ namespace RLTPS.Control
 		public void BallHitWith(EBlockID id)
 		{
 			BlockModel block = this.gameModel.Stage.GetBlock(id);
-			Damage(ref block);
+			int damage = Damage(ref block);
 			if(block.IsDead()){
-				//TODO
+				this.sbjBlockDead.OnNext(id);
+			}else{
+				this.sbjBlockDamaged.OnNext((id, damage));
 			}
 		}
 		

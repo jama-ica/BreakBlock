@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using RLTPS.LevelData;
 
 namespace RLTPS.Model
 {
@@ -10,18 +11,26 @@ namespace RLTPS.Model
 	/// </summary>
 	public class BlockModel
 	{
-		readonly EBlockID _id;
+		EBlockID _id;
+		int _x;
+		int _y;
 		HpValue _hp;
 
 		// Constructor
-		public BlockModel(EBlockID id, int maxHp)
+		public BlockModel(EBlockID id, BlockData data)
 		{
 			this._id = id;
-			this._hp = new HpValue(maxHp);
+			this._x = data.X;
+			this._y = data.Y;
+			this._hp = new HpValue(data.Hp);
 		}
 
-		public EBlockID ID { get { return this._id; } }
+		public EBlockID Id { get { return this._id; } }
 
+		public int X { get { return this._x; } }
+
+		public int Y { get { return this._y; } }
+		
 		public HpValue Hp { get { return this._hp; } }
 
 		public bool IsDead()

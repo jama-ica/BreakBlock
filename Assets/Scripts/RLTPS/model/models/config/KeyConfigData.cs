@@ -41,14 +41,5 @@ namespace RLTPS.Model
 			return this.KeyPairs[(int)gameInput];
 		}
 
-		public void CopyFrom(KeyConfigData keyData)
-		{
-			for(int i = 0 ; i < this.KeyPairs.Length ; i++)
-			{
-				EGameInput gameInput = (EGameInput)i;
-				this.SetKeyPair(gameInput, keyData.GetKeyCode(gameInput));
-			}
-		}
-
 	}
 }

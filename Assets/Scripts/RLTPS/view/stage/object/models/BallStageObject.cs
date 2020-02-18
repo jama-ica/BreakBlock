@@ -12,10 +12,13 @@ namespace RLTPS.View.Stage
 	public class BallStageObject : ModelStageObject
 	{
 
+		TransformController transformController;
+
 		// Constructor
 		public BallStageObject(ViewStage stage, ModelPrefabResource modelPrefabResource)
 			: base(stage, modelPrefabResource)
 		{
+			this.transformController = null;
 		}
 
 		protected override EModelPrefabType GetPrefabType()
@@ -23,6 +26,15 @@ namespace RLTPS.View.Stage
 			return EModelPrefabType.Ball;
 		}
 
+		protected override void Staged(GameObject gameObj)
+		{
+			this.transformController = new TransformController(gameObj.transform);
+		}
 		
+		public void Move(Vector3 vec)
+		{
+			this.transformController.Move(vec);
+		}
+
 	}
 }

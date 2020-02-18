@@ -13,33 +13,32 @@ namespace RLTPS.Model
 	{
 		BallModel _ball;
 		BarModel _bar;
-		BlockModels _blocks;
+		BlocksModel _blocks;
 
 		// Constructor
 		public GameStageModel()
 		{
-			this._ball = new BallModel();
-			this._bar = new BarModel();
-			this._blocks = new BlockModels();
+			this._ball = null;
+			this._bar = null;
+			this._blocks = null;
 		}
 
-		public void Init(MasterData masterData)
+		public void Create(MasterData masterData)
 		{
-			this._ball.Init(masterData.Stage.BallSpeed);
-			this._bar.Init(masterData.Stage.BarSpeed);
-			this._blocks.Init(masterData.Stage.BlockPattern);
+			this._ball = new BallModel(masterData.Stage.BallSpeed);
+			this._bar = new BarModel(masterData.Stage.BarSpeed);
+			this._blocks = new BlocksModel(masterData.Stage.BlockPattern);
 		}
 
 		public BallModel Ball{ get{ return this._ball; } }
 
-
 		public BarModel Bar{ get{ return this._bar; } }
 
+		public BlocksModel Blocks{ get { return this._blocks; } }
 
-		public BlockModels Blocks{ get { return this._blocks; } }
-
-		public BlockModel GetBlock(EBlockID id){
-			return this._blocks.GetBlock(id);
+		public BlockModel GetBlock(EBlockID id)
+		{
+			return this._blocks.GetBlock((int)id);
 		}
 		
 	}

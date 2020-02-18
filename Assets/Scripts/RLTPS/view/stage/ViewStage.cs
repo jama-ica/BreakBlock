@@ -17,9 +17,10 @@ namespace RLTPS.View.Stage
 		{
 		}
 
-		public GameObject Stage(GameObject srcObject)
+		public GameObject Stage(GameObject srcObject, float x, float y, float z)
 		{
-			return GameObject.Instantiate(srcObject, new Vector3(0, 0, 0), Quaternion.identity);
+			Assert.IsNotNull(srcObject);
+			return GameObject.Instantiate(srcObject, new Vector3(x, y, z), Quaternion.identity);
 		}
 
 		public void UnStage(GameObject gameObj)

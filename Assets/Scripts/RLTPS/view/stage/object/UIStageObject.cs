@@ -22,10 +22,10 @@ namespace RLTPS.View.Stage
 
 		protected abstract EUIPrefabType GetPrefabType();
 
-		public override GameObject Load()
+		public override void Load()
 		{
 			EUIPrefabType type = GetPrefabType();
-			return this.uiPrefabResource.Load(type);
+			this._srcObj = this.uiPrefabResource.Load(type);
 		}
 
 

@@ -61,6 +61,7 @@ namespace RLTPS.Scene
 			
 			case EStep.LoadUpdate:
 				if( !this.LoadUpdate(deltaTime) ){
+					this.currentStep = EStep.SceneStart;
 					goto case EStep.SceneStart;
 				}
 				break;

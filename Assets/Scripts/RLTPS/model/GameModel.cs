@@ -30,40 +30,26 @@ namespace RLTPS.Model
 
 		public void SetMasterData(MasterData masterData)
 		{
-			if(this._masterData == null){
-				this._masterData = masterData;
-			}
-			else{
-				this._masterData.CopyFrom(masterData);
-			}
+			Assert.IsNull(this._masterData);
+			this._masterData = masterData;
 		}
-				
+
 		public void SetConfigData(ConfigData configData)
 		{
-			if(this._configData == null){
-				this._configData = configData;
-			}
-			else{
-				this._configData.CopyFrom(configData);
-			}
+			Assert.IsNull(this._configData);
+			this._configData = configData;
 		}
 
 		public void SetSaveData(SaveData saveData)
 		{
-			if(this._saveData == null){
-				this._saveData = saveData;
-			}
-			else{
-				this._saveData.CopyFrom(saveData);
-			}
+			Assert.IsNull(this._saveData);
+			this._saveData = saveData;
 		}
 
 		public void CreateStage()
 		{
-			if(this._stage == null){
-				this._stage = new GameStageModel();
-			}
-			this._stage.Init(this._masterData);
+			this._stage = new GameStageModel();
+			this._stage.Create(this._masterData);
 		}
 
 		public GameStageModel Stage { get { return this._stage; } }

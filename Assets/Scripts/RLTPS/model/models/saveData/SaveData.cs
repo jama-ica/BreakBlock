@@ -16,12 +16,6 @@ namespace RLTPS.Model
 		{
 		}
 
-		public void CopyFrom(SaveData saveData)
-		{
-			//TODO
-		}
-
-		
 		
 	}
 }

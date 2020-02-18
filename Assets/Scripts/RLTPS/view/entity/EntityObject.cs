@@ -18,7 +18,7 @@ namespace RLTPS.View.Entity
 
 		public EntityObject()
 		{
-			this._alive = false;
+			this._alive = true;
 		}
 
 		public bool Alive { get{ return this._alive; } }

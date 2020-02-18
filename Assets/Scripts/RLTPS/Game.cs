@@ -56,7 +56,7 @@ namespace RLTPS
 		public static void SetupMessagePackResolver () {
 			var resolver = MessagePack.Resolvers.CompositeResolver.Create(
 				MasterMemoryResolver.Instance, // set MasterMemory generated resolver
-//				GeneratedResolver.Instance, // set MessagePack generated resolver
+				GeneratedResolver.Instance, // set MessagePack generated resolver
 				StandardResolver.Instance // set default MessagePack resolver
 			);
 			var options = MessagePackSerializerOptions.Standard.WithResolver(resolver);

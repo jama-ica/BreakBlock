@@ -13,18 +13,12 @@ namespace RLTPS.Model
 		float _speed;
 
 		// Constructor
-		public BallModel()
-		{
-			this._speed = 0.0f;
-		}
-
-		public void Init(float speed)
+		public BallModel(float speed)
 		{
 			this._speed = speed;
 		}
 
 		public float Speed{ get{ return this._speed; } }
-		
 		
 	}
 }

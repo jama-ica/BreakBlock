@@ -56,6 +56,11 @@ namespace RLTPS.View.Stage
 				break;
 			}
 		}
+
+		public void Move(Vector3 vec)
+		{
+			this.transform.Translate(vec);
+		}
 		
 		public void Rotate(float x)
 		{

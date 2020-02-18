@@ -14,10 +14,11 @@ namespace RLTPS.Control
 	public partial class Controller // for Block
 	{
 
-		void Damage(ref BlockModel block)
+		int Damage(ref BlockModel block)
 		{
 			int val = 1;
 			block.Hp.Reduce(val);
+			return val;
 		}
 
 	}

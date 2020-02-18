@@ -24,10 +24,10 @@ namespace RLTPS.View.Stage
 
 		protected abstract EModelPrefabType GetPrefabType();
 
-		public override GameObject Load()
+		public override void Load()
 		{
 			EModelPrefabType type = GetPrefabType();
-			return this.modelPrefabResource.Load(type);
+			this._srcObj = this.modelPrefabResource.Load(type);
 		}
 
 

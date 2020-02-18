@@ -34,10 +34,5 @@ namespace RLTPS.Model
 
 		public KeyConfigData KeyData { get{ return this._keyData; } }
 
-		public void CopyFrom(ConfigData configData)
-		{
-			this._keyData.CopyFrom(configData.KeyData);
-		}
-
 	}
 }

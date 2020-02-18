@@ -55,11 +55,15 @@ namespace RLTPS.View.Command
 			this.entityManager.Add(ballEntity);
 		}
 
-		public void CreateBlocks(BlockModels blockModel)
+		public void CreateBlocks(BlocksModel blocksModel)
 		{
-			var blockEntity = new BlockEntity(this.controller, this.resourceManager, this.viewManager, blockModel);
-			this.entityManager.Add(blockEntity);
-		}	
-		
+			for(int i = 0, size = blocksModel.Size ; i < size ; i++)
+			{
+				BlockModel blockModel = blocksModel.GetBlock(i);
+				var blockEntity = new BlockEntity(this.controller, this.resourceManager, this.viewManager, blockModel);
+				this.entityManager.Add(blockEntity);
+			}
+		}
+
 	}
 }

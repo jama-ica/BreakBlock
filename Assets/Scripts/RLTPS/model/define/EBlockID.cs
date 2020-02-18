@@ -5,7 +5,8 @@ namespace RLTPS.Model
 {
 	public enum EBlockID
 	{
-		MIN = 0,
+		NONE = 0,
+		MIN = 1,
 		MAX = int.MaxValue,
 	}
 

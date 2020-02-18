@@ -11,31 +11,21 @@ namespace RLTPS.Model
 	/// </summary>
 	public class MasterData
 	{
-		public static MasterData CreateDefault()
-		{
-			//TODO
-			return new RLTPS.Model.MasterData();
-		}
+		// public static MasterData CreateDefault()
+		// {
+		// 	//TODO
+		// 	return new RLTPS.Model.MasterData();
+		// }
 
 		GameStage _stage;
 
 		// Constructor
-		public MasterData()
-		{
-			this._stage = null;
-		}
-
-		public GameStage Stage { get { return this._stage; } }
-
-		public void Init(GameStage stage)
+		public MasterData(GameStage stage)
 		{
 			this._stage = stage;
 		}
 
-		public void CopyFrom(MasterData masterData)
-		{
-			//TODO
-		}
-		
+		public GameStage Stage { get { return this._stage; } }
+
 	}
 }

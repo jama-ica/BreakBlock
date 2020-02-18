@@ -30,16 +30,16 @@ namespace RLTPS.View.Stage
 
 		public GameObject GameObj { get{ return this._gameObj; } }
 
-		public abstract GameObject Load();
+		public abstract void Load();
 
 		public bool IsLoaded()
 		{
 			return this._srcObj != null;
 		}
 
-		public void Stage()
+		public void Stage(float x, float y, float z)
 		{
-			this._gameObj = this.stage.Stage(this._srcObj);
+			this._gameObj = this.stage.Stage(this._srcObj, x, y, z);
 			Staged(this._gameObj);
 		}
 

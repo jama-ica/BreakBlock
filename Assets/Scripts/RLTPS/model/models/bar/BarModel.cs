@@ -13,19 +13,12 @@ namespace RLTPS.Model
 		float _speed;
 
 		// Constructor
-		public BarModel()
-		{
-			this._speed = 0.0f;
-		}
-
-
-		public void Init(float speed)
+		public BarModel(float speed)
 		{
 			this._speed = speed;
 		}
 
 		public float Speed{ get{ return this._speed; } }
-		
 		
 	}
 }

@@ -28,6 +28,7 @@ namespace RLTPS.View.Entity
 		EStep step;
 		BarStageObject barObj;
 		//--
+		readonly BarModel barModel;
 		readonly Controller controller;
 		readonly GameInput currentInput;
 
@@ -38,6 +39,7 @@ namespace RLTPS.View.Entity
 			this.step = EStep.MAX;
 			this.barObj = new BarStageObject(viewManager.Stage, resourceManager.Model);
 			//--
+			this.barModel = barModel;
 			this.controller = controller;
 			this.currentInput = viewManager.InputManager.CurrentInput;
 		}
@@ -53,11 +55,13 @@ namespace RLTPS.View.Entity
 			{
 			case EStep.LoadStart:
 				this.barObj.Load();
+				this.step = EStep.LoadUpdate;
 				goto case EStep.LoadUpdate;
 
 			case EStep.LoadUpdate:
 				if(this.barObj.IsLoaded()){
-					this.barObj.Stage();
+					this.barObj.Stage(0.0f, 0.0f, 0.0f);
+					this.step = EStep.EntityUpdate;
 					goto case EStep.EntityUpdate;
 				}
 				break;
@@ -77,10 +81,10 @@ namespace RLTPS.View.Entity
 		void EntityUpdate(float deltaTime)
 		{
 			if( this.currentInput.IsOn(Model.EGameInput.MoveLeft) ){
-				this.barObj.Move(EDir.LEFT, 1.0f);
+				this.barObj.Move(EDir.LEFT, this.barModel.Speed);
 			}
 			else if( this.currentInput.IsOn(Model.EGameInput.MoveRight) ){
-				this.barObj.Move(EDir.RIGHT, 1.0f);
+				this.barObj.Move(EDir.RIGHT, this.barModel.Speed);
 			}
 		}
 
