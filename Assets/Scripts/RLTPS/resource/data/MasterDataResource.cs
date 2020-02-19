@@ -23,7 +23,7 @@ namespace RLTPS.Resource
 		{
 			var builder = new DatabaseBuilder ();
 			builder.Append (new GameStage[] {
-				new GameStage { StageID = 0, BallSpeed = 1.0f, BarSpeed = 0.1f, BlockPattern = new BlockPattern {
+				new GameStage { StageID = 0, BallSpeed = 0.1f, BarSpeed = 0.1f, BlockPattern = new BlockPattern {
 						Width = 3, Height = 2, Blocks = new BlockData[] {
 							new BlockData { X = 0, Y = 4, Hp = 1 },
 							new BlockData { X = 3, Y = 4, Hp = 1 },

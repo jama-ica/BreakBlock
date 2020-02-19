@@ -40,10 +40,10 @@ namespace RLTPS.View.Stage
 		public void Stage(float x, float y, float z)
 		{
 			this._gameObj = this.stage.Stage(this._srcObj, x, y, z);
-			Staged(this._gameObj);
+			OnStaged(this._gameObj);
 		}
 
-		protected virtual void Staged(GameObject gameObj){}
+		protected virtual void OnStaged(GameObject gameObj){}
 
 		public bool IsStaged()
 		{

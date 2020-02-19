@@ -14,13 +14,25 @@ namespace RLTPS.Control
 	public partial class Controller // for Game
 	{
 
-		Subject<EBlockID> sbjBlockDead = new Subject<EBlockID>();
-		public IObservable<EBlockID> OnBlockDead() => this.sbjBlockDead;
+		// onBlockDamaged
+		Subject<(EBlockID id, int damage)> _onBlockDamaged;
+		public IObservable<(EBlockID id, int damage)> OnBlockDamaged(){
+			return this._onBlockDamaged ?? (this._onBlockDamaged = new Subject<(EBlockID id, int damage)>());
+		}
+		void SendBlockDamaged(EBlockID id, int damage){
+			if(this._onBlockDamaged != null){ this._onBlockDamaged.OnNext((id, damage)); }
+		}
 
-		Subject<(EBlockID id, int damage)> sbjBlockDamaged = new Subject<(EBlockID id, int damage)>();
-		public IObservable<(EBlockID id, int damage)> OnBlockDamaged() => this.sbjBlockDamaged;
+		// onBlockDead
+		Subject<EBlockID> _onBlockDead;
+		public IObservable<EBlockID> OnBlockDead(){
+			return this._onBlockDead ?? (this._onBlockDead = new Subject<EBlockID>());
+		}
+		void SendBlockDead(EBlockID id){
+			if(this._onBlockDead != null){ this._onBlockDead.OnNext(id); }
+		}
 
-	
+
 		public void StartStage()
 		{
 			this.gameModel.CreateStage();
@@ -33,13 +45,11 @@ namespace RLTPS.Control
 		{
 			BlockModel block = this.gameModel.Stage.GetBlock(id);
 			int damage = Damage(ref block);
+			SendBlockDamaged(id, damage);
 			if(block.IsDead()){
-				this.sbjBlockDead.OnNext(id);
-			}else{
-				this.sbjBlockDamaged.OnNext((id, damage));
+				SendBlockDead(id);
 			}
 		}
-		
 
 	}
 }

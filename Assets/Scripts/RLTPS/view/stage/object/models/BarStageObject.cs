@@ -27,7 +27,7 @@ namespace RLTPS.View.Stage
 			return EModelPrefabType.Bar;
 		}
 
-		protected override void Staged(GameObject gameObj)
+		protected override void OnStaged(GameObject gameObj)
 		{
 			this.transformController = new TransformController(gameObj.transform);
 		}

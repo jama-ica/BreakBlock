@@ -44,7 +44,7 @@ namespace RLTPS.View.Entity
 				{
 					item = list[i];
 					if( item == null ){
-						continue;
+						break;
 					}
 					if( item.Alive ){
 						i++;
@@ -61,7 +61,7 @@ namespace RLTPS.View.Entity
 				{
 					item = list[i];
 					if( item == null ){
-						continue;
+						break;
 					}
 					if( item.Update(deltaTime) ){
 						i++;

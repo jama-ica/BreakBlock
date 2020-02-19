@@ -20,6 +20,11 @@ namespace RLTPS.View.Stage
 			this.rigidbody = rigidbody;
 		}
 
+		public void Move(Vector3 vec)
+		{
+			this.rigidbody.AddForce(vec);
+		}
+
 		public void Move(EDir dir, float val)
 		{
 			switch (dir)

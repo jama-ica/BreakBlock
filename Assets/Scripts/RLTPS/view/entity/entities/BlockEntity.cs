@@ -43,7 +43,7 @@ namespace RLTPS.View.Entity
 			this.blockObj.Load();
 			float x = (float)blockModel.X;
 			float y = (float)blockModel.Y;
-			this.blockObj.Stage(x, y, 0.0f);
+			this.blockObj.Stage(blockModel.Id, x, y, 0.0f);
 		}
 
 		public override void End()

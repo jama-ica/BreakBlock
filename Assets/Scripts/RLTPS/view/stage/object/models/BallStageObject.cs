@@ -13,6 +13,7 @@ namespace RLTPS.View.Stage
 	{
 
 		TransformController transformController;
+		//RigidbodyController rigidbodyController;
 
 		// Constructor
 		public BallStageObject(ViewStage stage, ModelPrefabResource modelPrefabResource)
@@ -26,7 +27,7 @@ namespace RLTPS.View.Stage
 			return EModelPrefabType.Ball;
 		}
 
-		protected override void Staged(GameObject gameObj)
+		protected override void OnStaged(GameObject gameObj)
 		{
 			this.transformController = new TransformController(gameObj.transform);
 		}
