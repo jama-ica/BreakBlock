@@ -36,7 +36,7 @@ namespace RLTPS.Scene
 
 		protected override void LoadStart()
 		{
-			resourceManager.Model.Load(EModelPrefabType.Bar);
+			resourceManager.Prefab.Load(EPrefabType.Bar);
 		}
 
 		protected override bool LoadUpdate(float deltaTime)

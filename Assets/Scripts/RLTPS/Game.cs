@@ -42,7 +42,7 @@ namespace RLTPS
 			this.resourceManager = new ResourceManager();
 			this.controller = new Controller(this.gameModel, this.resourceManager);
 
-			this.viewManager = new ViewManager(this.deviceManager);
+			this.viewManager = new ViewManager(this.resourceManager, this.deviceManager);
 			this.entityManager = new EntityManager();
 			this.viewCommandProcessor = new ViewCommandProcessor(this.controller, this.resourceManager, this.viewManager, this.entityManager);
 

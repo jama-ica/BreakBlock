@@ -17,14 +17,15 @@ namespace RLTPS.View.Stage
 		{
 		}
 
-		public GameObject Stage(GameObject srcObject, float x, float y, float z)
+		public GameObject Stage(GameObject gameObj, float x, float y, float z)
 		{
-			Assert.IsNotNull(srcObject);
-			return GameObject.Instantiate(srcObject, new Vector3(x, y, z), Quaternion.identity);
+			Assert.IsNotNull(gameObj);
+			return GameObject.Instantiate(gameObj, new Vector3(x, y, z), Quaternion.identity);
 		}
 
 		public void UnStage(GameObject gameObj)
 		{
+			Assert.IsNotNull(gameObj);
 			UnityEngine.Object.Destroy(gameObj);
 		}
 

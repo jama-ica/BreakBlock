@@ -16,22 +16,22 @@ namespace RLTPS.Util
 		int size;
 
 		// Constructor
-		public UtilArray(int limit)
+		public UtilArray(int capacity)
 		{
-			this.buf = new T[limit];
+			this.buf = new T[capacity];
 			this.head = 0;
 			this.size = 0;
 		}
 
-		public T[] List { get { return this.buf; } }
+		public T[] Array { get { return this.buf; } }
 
 		public int Size { get { return this.size; } }
 
-		public int Limit { get { return this.buf.Length; } }
+		public int Capacity { get { return this.buf.Length; } }
 
 		public int Add(T item)
 		{
-			int index = Seek(this.head, this.buf);
+			int index = SeekNextHead(this.head, this.buf);
 			Assert.IsTrue(0 <= index && index < this.buf.Length);
 			Assert.IsNull(this.buf[index]);
 			this.buf[index] = item;
@@ -84,15 +84,16 @@ namespace RLTPS.Util
 			this.size = 0;
 		}
 
-		public void ReSize(int newLimit)
-		{
-			for(int i = 0 ; i < this.buf.Length ; i++){
-				this.buf[i] = null;
-			}
-			Array.Resize(ref this.buf, newLimit);
-		}
+		// public void ReSize(int capacity)
+		// {
+		// 	Assert.IsTrue(this.buf.Length < capacity);
+		// 	for(int i = 0 ; i < this.buf.Length ; i++){
+		// 		this.buf[i] = null;
+		// 	}
+		// 	Array.Resize(ref this.buf, capacity);
+		// }
 
-		private int Seek(int head, T[] buf)
+		int SeekNextHead(int head, T[] buf)
 		{
 			for(int i = head ; i < buf.Length ; i++){
 				if( buf[i] == null ){

@@ -6,26 +6,22 @@ using RLTPS.Util;
 
 namespace RLTPS.Resource
 {
-	public enum EModelPrefabType
+	public enum ESoundSEType
 	{
-		Bar,
-		Ball,
-		Block,
+		Hoge,
 		//--
 		MAX
 	}
 
-	public static class ExEModelPrefabType
+	public static class ExESoundSEType
 	{
 		static readonly UtilPairs<string> PathPairs = new UtilPairs<string>(
 			new (int key, string val)[]{
-				((int)EModelPrefabType.Bar, "Prefabs/3D/Bar"),
-				((int)EModelPrefabType.Ball, "Prefabs/3D/Ball"),
-				((int)EModelPrefabType.Block, "Prefabs/3D/Block"),
+				((int)ESoundSEType.Hoge, "Sound/SE/DM-CGS-03"),
 			}
 		);
 
-		public static string ToPath(this EModelPrefabType type)
+		public static string ToPath(this ESoundSEType type)
 		{
 			return PathPairs.GetItem((int)type);
 		}

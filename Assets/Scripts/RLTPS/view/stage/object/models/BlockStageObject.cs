@@ -11,13 +11,13 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class BlockStageObject : ModelStageObject
+	public class BlockStageObject : StageObject
 	{
 		public static readonly string Tag = "Block";
 
-		public static string GetName(EBlockID id)
+		public static string ConvertToName(EBlockID id)
 		{
-			var sb = new StringBuilder(BlockStageObject.Tag);
+			var sb = new StringBuilder(Tag, 16);
 			sb.Append(((int)id).ToString());
 			return sb.ToString();
 		}
@@ -28,20 +28,23 @@ namespace RLTPS.View.Stage
 		}
 
 		// Constructor
-		public BlockStageObject(ViewStage stage, ModelPrefabResource modelPrefabResource)
-			: base(stage, modelPrefabResource)
+		public BlockStageObject(ViewStage stage, ResourceManager resouceManager)
+			: base(stage, resouceManager)
 		{
 		}
 
-		protected override EModelPrefabType GetPrefabType()
-		{
-			return EModelPrefabType.Block;
-		}
+		//----------------------------------------------------
+		//	Resource
+		//----------------------------------------------------
+		protected override EPrefabType GetModelPrefabType(){ return EPrefabType.Block; }
 
+		//----------------------------------------------------
+		//	Stage
+		//----------------------------------------------------
 		public void Stage(EBlockID id, float x, float y, float z)
 		{
-			Stage(x, y, z);
-			this._gameObj.name = BlockStageObject.GetName(id);
+			var gameObj = Stage(GetModelPrefabType(), x, y, z);
+			this._gameObj.name = BlockStageObject.ConvertToName(id);
 		}
 		
 	}

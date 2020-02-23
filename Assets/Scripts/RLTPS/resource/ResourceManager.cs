@@ -14,8 +14,9 @@ namespace RLTPS.Resource
 		public MasterDataResource MasterData { get; }
 		public SaveDataResource SaveData { get; }
 
-		public UIPrefabResource UI { get; }
-		public ModelPrefabResource Model { get; }
+		public PrefabResource Prefab { get; }
+
+		public SoundResource Sound { get; }
 		
 		// Constructor
 		public ResourceManager()
@@ -24,8 +25,9 @@ namespace RLTPS.Resource
 			this.MasterData = new MasterDataResource();
 			this.SaveData = new SaveDataResource();
 
-			this.UI = new UIPrefabResource();
-			this.Model = new ModelPrefabResource();
+			this.Prefab = new PrefabResource();
+
+			this.Sound = new SoundResource();
 		}
 
 		

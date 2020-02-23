@@ -37,7 +37,7 @@ namespace RLTPS.View.Entity
 			: base()
 		{
 			this.step = EStep.MAX;
-			this.barObj = new BarStageObject(viewManager.Stage, resourceManager.Model);
+			this.barObj = new BarStageObject(viewManager.Stage, resourceManager);
 			//--
 			this.barModel = barModel;
 			this.controller = controller;

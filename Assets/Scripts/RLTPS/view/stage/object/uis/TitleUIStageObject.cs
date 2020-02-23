@@ -9,32 +9,17 @@ namespace RLTPS.View.Stage
 	/// <summary>
 	/// 
 	/// </summary>
-	public class TitleUIStageObject : UIStageObject
+	public class TitleUIStageObject : StageObject
 	{
 		
 		// Constructor
-		public TitleUIStageObject(ViewStage stage, UIPrefabResource uiPrefabResource)
-			: base(stage, uiPrefabResource)
+		public TitleUIStageObject(ViewStage stage, ResourceManager resouceManager)
+			: base(stage, resouceManager)
 		{
 		}
 
-		protected override EUIPrefabType GetPrefabType()
-		{
-			return EUIPrefabType.Title;
-		}
+		protected override EPrefabType GetModelPrefabType(){ return EPrefabType.UI_Title; }
 
-		// public override void Start()
-		// {
-		// 	var t = this.GameObj.transform.Find("Panel/Text");
-		// 	var text = t.GetComponent<UnityEngine.UI.Text>();
-		// 	text.text = "あああ";
-
-		// 	var b = this.GameObj.transform.Find("Panel/Button");
-		// 	var button = b.GetComponent<UnityEngine.UI.Button>();
-		// 	button.onClick.AddListener( () => {
-		// 		Debug.Log("You have clicked the button!");
-		// 	});
-		// }
 
 	}
 }

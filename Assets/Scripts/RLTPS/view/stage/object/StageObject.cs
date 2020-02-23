@@ -12,38 +12,69 @@ namespace RLTPS.View.Stage
 	/// </summary>
 	public abstract class StageObject
 	{
-		protected GameObject _srcObj;
 		protected GameObject _gameObj;
 		//--
-		readonly ViewStage stage;
+		readonly ResourceManager resouceManager;
+		readonly ViewStage viewStage;
 
 		// Constructor
-		public StageObject(ViewStage stage)
+		public StageObject(ViewStage viewStage, ResourceManager resouceManager)
 		{
-			this._srcObj = null;
 			this._gameObj = null;
 			//--
-			this.stage = stage;
+			this.resouceManager = resouceManager;
+			this.viewStage = viewStage;
 		}
-
-		public GameObject SrcObj { get{ return this._srcObj; } }
 
 		public GameObject GameObj { get{ return this._gameObj; } }
 
-		public abstract void Load();
+		//----------------------------------------------------
+		//	Resource
+		//----------------------------------------------------
+		protected virtual EPrefabType GetModelPrefabType(){ return EPrefabType.MAX; }
+
+		protected virtual ESoundSEType[] GetSoundSETypes(){ return null; }
+
+		protected virtual ESoundBGMType[] GetSoundBGMTypes(){ return null; }
+
+		public void Load()
+		{
+			// Model
+			this.resouceManager.Prefab.Load( GetModelPrefabType() );
+
+			// SE
+			ESoundSEType[] seTypes = GetSoundSETypes();
+			if(seTypes != null){
+				this.resouceManager.Sound.LoadList( seTypes );
+			}
+			// BGM
+			ESoundBGMType[] bgmTypes = GetSoundBGMTypes();
+			if(bgmTypes != null){
+				this.resouceManager.Sound.LoadList( bgmTypes );
+			}
+		}
 
 		public bool IsLoaded()
 		{
-			return this._srcObj != null;
+			//TODO
+			return true;
 		}
 
-		public void Stage(float x, float y, float z)
+		public virtual void End()
 		{
-			this._gameObj = this.stage.Stage(this._srcObj, x, y, z);
-			OnStaged(this._gameObj);
+			UnStage();
 		}
 
-		protected virtual void OnStaged(GameObject gameObj){}
+		//----------------------------------------------------
+		//	Stage
+		//----------------------------------------------------
+
+		protected GameObject Stage(EPrefabType type, float x, float y, float z)
+		{
+			var srcGameObj = this.resouceManager.Prefab.Get(type);
+			this._gameObj = this.viewStage.Stage(srcGameObj, x, y, z);
+			return this._gameObj;
+		}
 
 		public bool IsStaged()
 		{
@@ -52,9 +83,10 @@ namespace RLTPS.View.Stage
 
 		public void UnStage()
 		{
-			this.stage.UnStage(this._gameObj);
+			this.viewStage.UnStage(this._gameObj);
 			this._gameObj = null;
 		}
+
 
 	}
 }

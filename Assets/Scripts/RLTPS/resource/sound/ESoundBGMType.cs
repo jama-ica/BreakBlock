@@ -6,22 +6,22 @@ using RLTPS.Util;
 
 namespace RLTPS.Resource
 {
-	public enum EUIPrefabType
+	public enum ESoundBGMType
 	{
-		Title,
+		Hoge,
 		//--
 		MAX
 	}
 
-	public static class ExEUIPrefabType
+	public static class ExESoundBGMType
 	{
 		static readonly UtilPairs<string> PathPairs = new UtilPairs<string>(
 			new (int key, string val)[]{
-				((int)EUIPrefabType.Title, "Prefabs/UI/TitleCanvas"),
+				((int)ESoundBGMType.Hoge, "Sound/BGM/Hoge"),
 			}
 		);
 
-		public static string ToPath(this EUIPrefabType type)
+		public static string ToPath(this ESoundBGMType type)
 		{
 			return PathPairs.GetItem((int)type);
 		}

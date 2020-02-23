@@ -38,11 +38,11 @@ namespace RLTPS.View.Entity
 		public void Update(float deltaTime)
 		{
 			{
-				EntityObject[] list = this.objects.List;
+				EntityObject[] array = this.objects.Array;
 				EntityObject item;
 				for(int i = 0, size = this.objects.Size ; i < size ; )
 				{
-					item = list[i];
+					item = array[i];
 					if( item == null ){
 						break;
 					}
@@ -55,11 +55,11 @@ namespace RLTPS.View.Entity
 				}
 			}
 			{
-				EntityBehavior[] list = this.behaviors.List;
+				EntityBehavior[] array = this.behaviors.Array;
 				EntityBehavior item;
 				for(int i = 0, size = this.behaviors.Size ; i < size ; )
 				{
-					item = list[i];
+					item = array[i];
 					if( item == null ){
 						break;
 					}
@@ -74,28 +74,28 @@ namespace RLTPS.View.Entity
 
 		public void FixedUpdate()
 		{
-			EntityBehavior[] list = this.behaviors.List;
+			EntityBehavior[] array = this.behaviors.Array;
 			for(int i = 0, size = this.behaviors.Size ; i < size ; i++ )
 			{
-				list[i].FixedUpdate();
+				array[i].FixedUpdate();
 			}
 		}
 
 		public void End()
 		{
 			{
-				EntityObject[] list = this.objects.List;
+				EntityObject[] array = this.objects.Array;
 				for(int i = 0, size = this.objects.Size ; i < size ; )
 				{
-					list[i].End();
+					array[i].End();
 				}
 				this.objects.Clear();
 			}
 			{
-				EntityBehavior[] list = this.behaviors.List;
+				EntityBehavior[] array = this.behaviors.Array;
 				for(int i = 0, size = this.behaviors.Size ; i < size ; )
 				{
-					list[i].End();
+					array[i].End();
 				}
 				this.behaviors.Clear();
 			}

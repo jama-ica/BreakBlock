@@ -15,17 +15,17 @@ namespace RLTPS.Util
 		int tail;
 
 		// Constructor
-		public UtilList(int limit)
+		public UtilList(int capacity)
 		{
-			this.buf = new T[limit];
+			this.buf = new T[capacity];
 			this.tail = 0;
 		}
 
-		public T[] List { get { return this.buf; } }
+		public T[] Array { get { return this.buf; } }
 
 		public int Size { get { return this.tail; } }
 
-		public int Limit { get { return this.buf.Length; } }
+		public int Capacity { get { return this.buf.Length; } }
 
 		public T Get(int index)
 		{
@@ -43,10 +43,10 @@ namespace RLTPS.Util
 
 		public void Add(UtilList<T> list)
 		{
-			T[] ls = list.List;
+			T[] array = list.Array;
 			for(int i = 0, size = list.Size; i < size ; i++)
 			{
-				Add(ls[i]);
+				Add(array[i]);
 			}
 		}
 

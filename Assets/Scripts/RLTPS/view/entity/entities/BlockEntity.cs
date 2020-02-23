@@ -27,7 +27,7 @@ namespace RLTPS.View.Entity
 		{
 			this.blockModel = blockModel;
 			//--
-			this.blockObj = new BlockStageObject(viewManager.Stage, resourceManager.Model);
+			this.blockObj = new BlockStageObject(viewManager.Stage, resourceManager);
 
 			controller.OnBlockDead().Where(id => id == this.blockModel.Id ).Subscribe(id => {
 				Dead();

@@ -25,10 +25,10 @@ namespace RLTPS.View
 		public InputManager InputManager { get; private set; }
 
 		// Constructor
-		public ViewManager(DeviceManager deviceManager)
+		public ViewManager(ResourceManager resouceManager, DeviceManager deviceManager)
 		{
 			this.Stage = new ViewStage();
-			this.SoundPlayer = new SoundPlayer();
+			this.SoundPlayer = new SoundPlayer(resouceManager.Sound);
 			this.EffectPlayer = new EffectPlayer();
 			this.InputManager = new InputManager(deviceManager);
 		}
