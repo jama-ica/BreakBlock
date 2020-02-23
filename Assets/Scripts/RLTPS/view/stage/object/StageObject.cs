@@ -37,6 +37,8 @@ namespace RLTPS.View.Stage
 
 		protected virtual ESoundBGMType[] GetSoundBGMTypes(){ return null; }
 
+		protected virtual EEffectType[] GetEffectTypes(){ return null; }
+
 		public void Load()
 		{
 			// Model
@@ -51,6 +53,12 @@ namespace RLTPS.View.Stage
 			ESoundBGMType[] bgmTypes = GetSoundBGMTypes();
 			if(bgmTypes != null){
 				this.resouceManager.Sound.LoadList( bgmTypes );
+			}
+
+			// Effect
+			EEffectType[] effectTypes = GetEffectTypes();
+			if(effectTypes != null){
+				this.resouceManager.Effect.LoadList( effectTypes );
 			}
 		}
 

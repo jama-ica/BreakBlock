@@ -15,6 +15,7 @@ namespace RLTPS.Resource
 		public SaveDataResource SaveData { get; }
 
 		public PrefabResource Prefab { get; }
+		public EffectResource Effect { get; }
 
 		public SoundResource Sound { get; }
 		
@@ -26,6 +27,7 @@ namespace RLTPS.Resource
 			this.SaveData = new SaveDataResource();
 
 			this.Prefab = new PrefabResource();
+			this.Effect = new EffectResource();
 
 			this.Sound = new SoundResource();
 		}

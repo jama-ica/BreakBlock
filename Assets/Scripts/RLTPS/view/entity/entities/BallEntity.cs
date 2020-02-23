@@ -39,7 +39,7 @@ namespace RLTPS.View.Entity
 			: base()
 		{
 			this.step = EStep.MAX;
-			this.ballObj = new BallStageObject(viewManager.Stage, resourceManager, viewManager.SoundPlayer);
+			this.ballObj = new BallStageObject(viewManager.Stage, resourceManager, viewManager.SoundPlayer, viewManager.EffectPlayer);
 			this.vector = new Vector3();
 			//--
 			this.ballModel = ballModel;
@@ -88,6 +88,7 @@ namespace RLTPS.View.Entity
 			ballObj.Trigger.OnCollisionEnterAsObservable().Subscribe(collision => {
 				Debug.Log("hit!");
 				ballObj.PlaySE(ESoundSEType.Hoge);
+				ballObj.PlayEffect(EEffectType.FireBall, collision.transform.position);
 				if(collision.collider.tag == BlockStageObject.Tag){
 					EBlockID id = BlockStageObject.ConvertToID(collision.collider.gameObject.name);
 					this.controller.BallHitWith(id);

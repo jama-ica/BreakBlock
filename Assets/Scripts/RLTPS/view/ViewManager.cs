@@ -29,7 +29,7 @@ namespace RLTPS.View
 		{
 			this.Stage = new ViewStage();
 			this.SoundPlayer = new SoundPlayer(resouceManager.Sound);
-			this.EffectPlayer = new EffectPlayer();
+			this.EffectPlayer = new EffectPlayer(resouceManager.Effect);
 			this.InputManager = new InputManager(deviceManager);
 		}
 

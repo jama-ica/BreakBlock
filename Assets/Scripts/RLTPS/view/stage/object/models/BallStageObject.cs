@@ -20,15 +20,18 @@ namespace RLTPS.View.Stage
 		ObservableCollisionTrigger trigger;
 		readonly SoundPlayer soundPlayer;
 		EAudioSourceID audioSourceID;
+		readonly EffectPlayer effectPlayer;
+		// EEffectID effectID;
 
 		// Constructor
-		public BallStageObject(ViewStage stage, ResourceManager resouceManager, SoundPlayer soundPlayer)
+		public BallStageObject(ViewStage stage, ResourceManager resouceManager, SoundPlayer soundPlayer, EffectPlayer effectPlayer)
 			: base(stage, resouceManager)
 		{
 			this.transformController = null;
 			this.trigger = null;
 			this.soundPlayer = soundPlayer;
 			this.audioSourceID = EAudioSourceID.NONE;
+			this.effectPlayer = effectPlayer;
 		}
 
 		public ObservableCollisionTrigger Trigger { get { return this.trigger; } }
@@ -42,6 +45,11 @@ namespace RLTPS.View.Stage
 			ESoundSEType.Hoge,
 		};
 		protected override ESoundSEType[] GetSoundSETypes(){ return SoundSETypes; }
+
+		protected override EEffectType[] GetEffectTypes(){ return EffectTypes; }
+		static EEffectType[] EffectTypes = {
+			EEffectType.FireBall,
+		};
 
 		public override void End()
 		{
@@ -73,6 +81,14 @@ namespace RLTPS.View.Stage
 		public void PlaySE(ESoundSEType seType)
 		{
 			this.soundPlayer.PlaySE(this.audioSourceID, seType);
+		}
+
+		//----------------------------------------------------
+		//	Effect
+		//----------------------------------------------------
+		public void PlayEffect(EEffectType type, Vector3 position)
+		{
+			this.effectPlayer.Play(type, position);
 		}
 
 		//----------------------------------------------------
